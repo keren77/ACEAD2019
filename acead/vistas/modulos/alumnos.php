@@ -486,6 +486,22 @@ MODAL EDITAR ALUMNO
 
             </div>
 
+            <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <div class="input-group-addon"><i class="fa fa-calendar"></i>
+
+                </div>
+
+                <input type="text" class="form-control" name="editarFechaNac" placeholder="yyyy/mm/dd" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask>
+
+              </div>
+
+            </div>
+
             <!-- ENTRADA PARA EL CORREO ELECTRONICO -->
 
             <div class="form-group">
@@ -573,7 +589,7 @@ MODAL EDITAR ALUMNO
         </div>
 
         <?php
-
+        
           $editarAlumno = new ControladorAlumnos();
           $editarAlumno -> ctrEditarAlumno();
 

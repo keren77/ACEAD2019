@@ -113,20 +113,18 @@ class ControladorAlumnos{
 
 
 		if(isset($_POST["editarAlumno"])){
-//echo "<script type='text/javascript'>alert('funcion')</script>";
+
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre1"])){
 
 				$tabla = "tbl_alumnos";
-
-
 
 				$datos = array("Id_Alumno" => $_POST["editarAlumno"],
 										 "PrimerNombre" => $_POST["editarNombre1"],
 										 "PrimerApellido"	=> $_POST["editarApellido1"],
 										 "SegundoNombre"	=> $_POST["editarNombre2"],
 										 "SegundoApellido"	=> $_POST["editarApellido2"],
-
+										 //"FechaNacimiento"	=> $_POST["editarFechaNac"],
 										 "CorreoElectronico" => $_POST["editarEmail"],
 										 "Telefono" => $_POST["editarTelefono"],
 										 "Cedula" => $_POST["editarCedula"],

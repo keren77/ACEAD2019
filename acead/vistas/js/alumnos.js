@@ -28,12 +28,12 @@ $(".tablas").on("click", ".btnEditarAlumno", function(){
 			$("#editarNombre2").val(respuesta["SegundoNombre"]);
 			$("#editarApellido1").val(respuesta["PrimerApellido"]);
 			$("#editarApellido2").val(respuesta["SegundoApellido"]);
-
+			$("#editarFechaNac").val(respuesta["FechaNacimiento"]);
 			$("#editarTelefono").val(respuesta["Telefono"]);
 			$("#editarCedula").val(respuesta["Cedula"]);
 			$("#editarEmail").val(respuesta["CorreoElectronico"]);
-			$("#editarEstCivil").val(respuesta["Id_EstadoCivil"]);
-			$("#editarGenero").val(respuesta["Id_Genero"]);
+			$("#editarEstCivil").val(respuesta["Id_estadocivil"]);
+			$("#editarGenero").val(respuesta["Id_genero"]);
 
 
 		},
