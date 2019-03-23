@@ -38,35 +38,6 @@ class ModeloMatricula{
 
 	}
 
-  /*=============================================
-  REGISTRO DE MODALIDAD
-  =============================================*/
-
-  static public function mdlIngresarModalidad($tabla, $datos){
-
-
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (DescripModalidad)
-                                                  VALUES (:descripmodalidad1)");
-
-
-    $stmt->bindParam(":descripmodalidad1", $datos["DescripModalidad"], PDO::PARAM_STR);
-
-    if($stmt->execute()){
-
-      return "ok";
-
-    }else{
-
-      return "error";
-      echo "<script type='text/javascript'>alert('neles')</script>";
-    }
-
-    $stmt->close();
-
-    $stmt = null;
-
-  }
-
 
 
  /*=============================================

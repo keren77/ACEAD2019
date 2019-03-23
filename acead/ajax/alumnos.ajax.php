@@ -33,4 +33,20 @@ class AjaxAlumnos {
 
 }
 
+/*=============================================
+VALIDAR NO REPETIR ALUMNO
+=============================================*/
 
+public $validarAlumno;
+
+public function ajaxValidarAlumno(){
+
+  $item = "alumno";
+  $valor = $this->validarAlumno;
+
+  $respuesta = ControladorAlumnos::ctrMostrarAlumnos($item, $valor);
+
+  echo json_encode($respuesta);
+
+}
+}

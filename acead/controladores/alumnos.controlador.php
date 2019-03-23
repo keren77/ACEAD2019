@@ -16,10 +16,10 @@ class ControladorAlumnos{
 				$tabla = "tbl_alumnos";
 
 
-				$datos = array("PrimerNombre" => $_POST["nuevoNombre1"],
-										 "PrimerApellido"	=> $_POST["nuevoApellido1"],
-										 "SegundoNombre"	=> $_POST["nuevoNombre2"],
-										 "SegundoApellido"	=> $_POST["nuevoApellido2"],
+				$datos = array("PrimerNombre" => strtoupper($_POST["nuevoNombre1"]),
+										 "PrimerApellido"	=> strtoupper( $_POST["nuevoApellido1"]),
+										 "SegundoNombre"	=> strtoupper($_POST["nuevoNombre2"]),
+										 "SegundoApellido"	=> strtoupper($_POST["nuevoApellido2"]),
 										 "FechaNacimiento" => $_POST["nuevoFechaNac"],
 										 "CorreoElectronico" => $_POST["nuevoEmail"],
 										 "Telefono" => $_POST["nuevoTelefono"],
@@ -120,11 +120,10 @@ class ControladorAlumnos{
 				$tabla = "tbl_alumnos";
 
 				$datos = array("Id_Alumno" => $_POST["editarAlumno"],
-										 "PrimerNombre" => $_POST["editarNombre1"],
-										 "PrimerApellido"	=> $_POST["editarApellido1"],
-										 "SegundoNombre"	=> $_POST["editarNombre2"],
-										 "SegundoApellido"	=> $_POST["editarApellido2"],
-										 //"FechaNacimiento"	=> $_POST["editarFechaNac"],
+										 "PrimerNombre" => strtoupper($_POST["editarNombre1"]),
+										 "PrimerApellido"	=> strtoupper($_POST["editarApellido1"]),
+										 "SegundoNombre"	=> strtoupper($_POST["editarNombre2"]),
+										 "SegundoApellido"	=> strtoupper($_POST["editarApellido2"]),
 										 "CorreoElectronico" => $_POST["editarEmail"],
 										 "Telefono" => $_POST["editarTelefono"],
 										 "Cedula" => $_POST["editarCedula"],

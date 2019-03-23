@@ -136,7 +136,7 @@ CUERPO DOCUMENTO
                 $_GET["ruta"] == "metodorecup" ||
                 $_GET["ruta"] == "contestapreg" ||
                 $_GET["ruta"] == "" ||
-                 $_GET["ruta"] == "preguntas" ||
+                $_GET["ruta"] == "preguntas" ||
                 $_GET["ruta"] == "cambiopass" ||
                 $_GET["ruta"] == "recupera" ||
                 $_GET["ruta"] == "cambiapasspreg" ||
@@ -157,6 +157,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/alumnos.js"></script>
 <script src="vistas/js/ctrespacios.js"></script>
 <script src="vistas/js/matricula.js"></script>
+<script src="vistas/js/modalidades.js"></script>
 <script src="vistas/js/configuracion.js"></script>
 
 

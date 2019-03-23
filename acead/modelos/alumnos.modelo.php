@@ -87,7 +87,6 @@ class ModeloAlumnos{
                                                                    PrimerApellido = :apellido1,
                                                                    SegundoApellido = :apellido2,
 																																	 CorreoElectronico = :email,
-
                                                                    Telefono = :telefono,
                                                                    Cedula = :cedula,
                                                                    Id_estadocivil = :estcivil,
@@ -99,7 +98,6 @@ class ModeloAlumnos{
     $stmt->bindParam(":nombre2", $datos["SegundoNombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":apellido1", $datos["PrimerApellido"], PDO::PARAM_STR);
     $stmt->bindParam(":apellido2", $datos["SegundoApellido"], PDO::PARAM_STR);
-		//$stmt->bindParam(":FechaNac", $datos["FechaNacimiento"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datos["CorreoElectronico"], PDO::PARAM_STR);
 		$stmt->bindParam(":telefono", $datos["Telefono"], PDO::PARAM_STR);
 		$stmt->bindParam(":cedula", $datos["Cedula"], PDO::PARAM_STR);
