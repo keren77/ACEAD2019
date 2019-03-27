@@ -108,7 +108,9 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "cambiapasspreg" ||
          $_GET["ruta"] == "cambiocontrasena" ||
          $_GET["ruta"] == "recupera" ||
+         $_GET["ruta"] == "historialacademico" ||
          $_GET["ruta"] == "configuracion" ||
+         $_GET["ruta"] == "registracalificaciones" ||
          $_GET["ruta"] == "salir"){
         include "modulos/".$_GET["ruta"].".php";
       }else{

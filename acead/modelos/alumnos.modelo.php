@@ -215,7 +215,15 @@ switch ($funcion){
     case 'cargasecciones':
     metodo_cargasecciones();
     break;
+    case 'cargahistorial': 
+    metodo_cargahistorial();
+    break;
+    case 'registracali': 
+    metodo_registracali();
+    break;
 }
+
+
 
 function metodo_cargaorientacion(){
     $idmodalidad = filter_input(INPUT_POST, 'idmodalidad');
@@ -250,3 +258,30 @@ function metodo_cargasecciones(){
     echo json_encode($resultado);
 
 }
+<<<<<<< .mine
+
+function metodo_cargahistorial(){
+    @session_start();
+        $idu = $_SESSION["usuario"];
+    $stmt= ConexionBD::Abrir_Conexion()->prepare("select TCL.Id_Clase AS ID, TCL.DescripClase AS NC, concat(TA.PrimerNombre, ' ', TA.PrimerApellido) AS EST, TC.NotaFinal AS NF, TOB.observacion AS STATUS from (((tbl_calificaciones TC inner join tbl_obsnotas TOB on TC.cod_obs=TOB.cod_obs) inner join tbl_secciones TS on TC.Id_Seccion = TS.Id_Seccion) inner join tbl_clases TCL on TC.Id_Clase = TCL.Id_Clase) inner join tbl_alumnos TA on TC.id_alumno = TA.Id_Alumno where TC.Id_Alumno = ".$idu.";");
+    $stmt ->execute();       
+    $resultado = $stmt->fetchAll(PDO::FETCH_BOTH);
+      echo json_encode($resultado);
+      
+}
+
+function metodo_registracali(){
+    @session_start();
+    $idu= $_SESSION["usuario"];
+    $stmt= ConexionBD::Abrir_Conexion()->prepare("SELECT TS.id_seccion AS IDS, TS.descripseccion AS DS FROM TBL_SECCIONES TS WHERE ID_USUARIO=".$idu.";");
+    $stmt ->execute();
+    $resultado = $stmt->fetchAll(PDO::FETCH_BOTH);
+      echo json_encode($resultado);
+}
+
+
+||||||| .r2
+
+
+=======
+>>>>>>> .r5

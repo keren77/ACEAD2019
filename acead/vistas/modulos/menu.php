@@ -34,6 +34,43 @@
 					<span>Alumnos</span>
 
 				</a>
+                            <ul class="treeview-menu">
+
+					<li>
+
+						<a href="historialacademico">
+
+							<i class="fa fa-circle-o"></i>
+							<span>Historial Academico</span>
+
+						</a>
+
+					</li>
+
+<!--					<li>
+
+						<a href="modalidades">
+
+							<i class="fa fa-circle-o"></i>
+							<span>Modalidades y Clases</span>
+
+						</a>
+
+					</li>
+
+					<li>
+
+						<a href="seccion">
+
+							<i class="fa fa-circle-o"></i>
+							<span>Secciones</span>
+
+						</a>
+
+					</li>-->
+
+				</ul>
+
 
 			</li>
 
@@ -91,6 +128,19 @@
 				</ul>
 
 			</li>
+                        <li>
+
+				<a href="registracalificaciones">
+
+					<i class="fa fa-pencil"></i>
+					<span>Registro de Calificaciones</span>
+
+				</a>
+                            
+
+
+			</li>
+
 
 			<li>
 
