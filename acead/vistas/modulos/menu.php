@@ -108,7 +108,7 @@
 						<a href="modalidades">
 
 							<i class="fa fa-circle-o"></i>
-							<span>Modalidades y Clases</span>
+							<span>Administración</span>
 
 						</a>
 
@@ -136,7 +136,7 @@
 					<span>Registro de Calificaciones</span>
 
 				</a>
-                            
+
 
 
 			</li>

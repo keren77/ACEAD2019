@@ -4,7 +4,7 @@ require_once "../controladores/modalidades.controlador.php";
 require_once "../modelos/modalidades.modelo.php";
 
 /* =============================================
-  EDITAR ALUMNO
+  EDITAR MODALIDAD
   ============================================= */
 if (isset($_POST["idModalidad"])) {
 

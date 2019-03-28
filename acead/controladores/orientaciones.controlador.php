@@ -1,39 +1,39 @@
 <?php
 
-class ControladorModalidades{
+class ControladorOrientaciones{
 
   /*=============================================
-  MOSTRAR MODALIDADES
+  MOSTRAR ORIENTACIONES
   =============================================*/
 
-  static public function ctrMostrarModalidades($item, $valor){
+  static public function ctrMostrarOrientaciones($item, $valor){
 
-    $tabla = "tbl_modalidades";
+    $tabla = "tbl_orientacion";
 
-    $respuesta = ModeloModalidades::MdlMostrarModalidades($tabla, $item, $valor);
+    $respuesta = ModeloOrientaciones::MdlMostrarOrientaciones($tabla, $item, $valor);
 
     return $respuesta;
   }
 
 
   /*=============================================
-	REGISTRO DE MODALIDAD
+	REGISTRO DE ORIENTACION
 	=============================================*/
 
-	static public function ctrCrearModalidad(){
+	static public function ctrCrearOrientacion(){
 
-		if(isset($_POST["nuevoDescripModalidad"])){
+		if(isset($_POST["nuevoNombreOrientacion"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoDescripModalidad"])){
-
-
-				$tabla = "tbl_modalidades";
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombreOrientacion"])){
 
 
-				$datos = array("DescripModalidad" => strtoupper($_POST["nuevoDescripModalidad"]));
+				$tabla = "tbl_orientacion";
 
 
-				$respuesta = ModeloModalidades::mdlIngresarModalidad($tabla, $datos);
+				$datos = array("Nombre" => strtoupper($_POST["nuevoNombreOrientacion"]));
+
+
+				$respuesta = ModeloOrientaciones::mdlIngresarOrientacion($tabla, $datos);
 
 				if($respuesta == "ok"){
 
@@ -42,7 +42,7 @@ class ControladorModalidades{
 					swal({
 
 						type: "success",
-						title: "¡La Modalidad sido guardada correctamente!",
+						title: "¡La Orientación sido guardada correctamente!",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
@@ -71,7 +71,7 @@ class ControladorModalidades{
 					swal({
 
 						type: "error",
-						title: "¡El nombre de la Modalidad no puede ir vacía o llevar caracteres especiales!",
+						title: "¡El nombre de la Orentación no puede ir vacía o llevar caracteres especiales!",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
@@ -98,23 +98,23 @@ class ControladorModalidades{
 	}
 
   /*=============================================
- EDITAR MODALIDAD
+ EDITAR ORIENTACION
  =============================================*/
 
- static public function ctrEditarModalidad(){
+ static public function ctrEditarOrientacion(){
 
 
-   if(isset($_POST["editarModalidad"])){
+   if(isset($_POST["editarOrientacion"])){
 
 
-     if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarModalidad"])){
+     if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarOrientacion"])){
 
-       $tabla = "tbl_modalidades";
+       $tabla = "tbl_orientacion";
 
-       $datos = array("Id_Modalidad" => $_POST["editarIdModalidad"],
-                    "DescripModalidad" => strtoupper($_POST["editarModalidad"]));
+       $datos = array("Id_orientacion" => $_POST["editarIdOrientacion"],
+                    "Nombre" => strtoupper($_POST["editarOrientacion"]));
 
-       $respuesta = ModeloModalidades::mdlEditarModalidad($tabla, $datos);
+       $respuesta = ModeloOrientaciones::mdlEditarOrientacion($tabla, $datos);
 
        if($respuesta == "ok"){
 
@@ -122,7 +122,7 @@ class ControladorModalidades{
 
          swal({
              type: "success",
-             title: "La Modalidad ha sido editada correctamente",
+             title: "La Orientación ha sido editada correctamente",
              showConfirmButton: true,
              confirmButtonText: "Cerrar",
              closeOnConfirm: false
@@ -166,18 +166,18 @@ class ControladorModalidades{
 
 
   /*=============================================
-	BORRAR MODALIDAD
+	BORRAR ORIENTACION
 	=============================================*/
 
-	static public function ctrBorrarModalidad(){
+	static public function ctrBorrarOrientacion(){
 
-		if(isset($_GET["idModalidad"])){
+		if(isset($_GET["idOrientacion"])){
 
 
-			$tabla = "tbl_modalidades";
-			$datos = $_GET["idModalidad"];
+			$tabla = "tbl_orientacion";
+			$datos = $_GET["idOrientacion"];
 
-			$respuesta = ModeloModalidades::mdlBorrarModalidad($tabla, $datos);
+			$respuesta = ModeloOrientaciones::mdlBorrarOrientacion($tabla, $datos);
 
 			if($respuesta == "ok"){
 
@@ -185,7 +185,7 @@ class ControladorModalidades{
 
 				swal({
 					  type: "success",
-					  title: "La Modalidad ha sido borrada correctamente",
+					  title: "La Orientación ha sido borrada correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar",
 					  closeOnConfirm: false
@@ -206,20 +206,6 @@ class ControladorModalidades{
 	}
 
   /*=============================================
-	MOSTRAR LA MODALIDAD
-	=============================================*/
-
-	static public function ctrCargarSelectModalidad(){
-
-		$tabla = "tbl_modalidades";
-
-		$respuesta = ModeloModalidades::mdlCargarSelect($tabla);
-
-		return $respuesta;
-
-	}
-
-  /*=============================================
 	MOSTRAR LA ORIENTACION
 	=============================================*/
 
@@ -227,12 +213,11 @@ class ControladorModalidades{
 
 		$tabla = "tbl_orientacion";
 
-		$respuesta = ModeloModalidades::mdlCargarSelect($tabla);
+		$respuesta = ModeloOrientaciones::mdlCargarSelect($tabla);
 
 		return $respuesta;
 
 	}
-
 
 
 

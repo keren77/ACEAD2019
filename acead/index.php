@@ -9,6 +9,7 @@ require_once "controladores/clientes.controlador.php";
 require_once "controladores/matricula.controlador.php";
 require_once "controladores/cambiopass.controlador.php";
 require_once "controladores/configuracion.controlador.php";
+require_once "controladores/orientaciones.controlador.php";
 
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/alumnos.modelo.php";
@@ -18,6 +19,7 @@ require_once "modelos/clientes.modelo.php";
 require_once "modelos/matricula.modelo.php";
 require_once "modelos/cambiopass.modelo.php";
 require_once "modelos/configuracion.modelo.php";
+require_once "modelos/orientaciones.modelo.php";
 
 //require_once "../PHPMailer/PHPMailerAutoload.php";
 

@@ -2,13 +2,13 @@
 
 require_once "conexion.php";
 
-class ModeloClases{
+class ModeloOrientaciones{
 
   /*=============================================
-  MOSTRAR CLASES
+  MOSTRAR ORIENTACION
   =============================================*/
 
-  static public function MdlMostrarClases($tabla, $item, $valor){
+  static public function MdlMostrarOrientaciones($tabla, $item, $valor){
 
     if($item != null){
 
@@ -38,17 +38,45 @@ class ModeloClases{
   }
 
   /*=============================================
-  REGISTRO DE CLASES
+  REGISTRO DE ORIENTACION
   =============================================*/
 
-  static public function mdlIngresarClases($tabla, $datos){
+  static public function mdlIngresarOrientacion($tabla, $datos){
 
 
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (DescripClase, Duracion)
-                                                  VALUES (:descriclase, :duracion)");
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (Nombre)
+                                                  VALUES (:nombreorientacion)");
 
-    $stmt->bindParam(":descripclase", $datos["DescripClase"], PDO::PARAM_STR);
-    $stmt->bindParam(":duracion", $datos["Duracion"], PDO::PARAM_STR);
+    $stmt->bindParam(":nombreorientacion", $datos["Nombre"], PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+      return "ok";
+
+    }else{
+
+      return "error";
+    }
+
+    $stmt->close();
+
+    $stmt = null;
+
+  }
+
+  /*=============================================
+  EDITAR MODALIDAD
+  =============================================*/
+
+  static public function mdlEditarOrientacion($tabla, $datos){
+
+
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("UPDATE $tabla SET Nombre =:nombreorientacion
+                                                    WHERE Id_orientacion = :id");
+
+
+    $stmt->bindParam(":id", $datos["Id_orientacion"], PDO::PARAM_STR);
+    $stmt->bindParam(":nombreorientacion", $datos["Nombre"], PDO::PARAM_STR);
 
     if($stmt->execute()){
 
@@ -66,43 +94,12 @@ class ModeloClases{
 
   }
 
-  /*=============================================
-  EDITAR CLASES
-  =============================================*/
-
-  static public function mdlEditarClase($tabla, $datos){
-
-
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("UPDATE $tabla SET DescripClase =: descripclase,
-                                                                     Duracion =: duracion,
-                                                    WHERE Id_Clase = :id");
-
-
-    $stmt->bindParam(":id", $datos["Id_Clase"], PDO::PARAM_STR);
-    $stmt->bindParam(":descripclase", $datos["DescripClase"], PDO::PARAM_STR);
-    $stmt->bindParam(":duracion", $datos["Duracion"], PDO::PARAM_STR);
-
-    if($stmt->execute()){
-
-      return "ok";
-
-    }else{
-
-      return "error";
-      echo "<script type='text/javascript'>alert('neles')</script>";
-    }
-
-    $stmt->close();
-
-    $stmt = null;
-
-  }
 
   /*=============================================
-  ACTUALIZAR MODALIDAD
+  ACTUALIZAR ORIENTACION
   =============================================*/
 
-  static public function mdlActualizarModalidad($tabla, $item1, $valor1, $item2, $valor2){
+  static public function mdlActualizarOrientacion($tabla, $item1, $valor1, $item2, $valor2){
 
     $stmt = ConexionBD::Abrir_Conexion()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
 
@@ -127,12 +124,12 @@ class ModeloClases{
   }
 
   /*=============================================
-  BORRAR CLASE
+  BORRAR ORIENTACION
   =============================================*/
 
-  static public function mdlBorrarClase($tabla, $datos){
+  static public function mdlBorrarOrientacion($tabla, $datos){
 
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("DELETE FROM tbl_clases WHERE Id_Clase = :id");
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("DELETE FROM tbl_orientacion WHERE Id_orientacion = :id");
 
     $stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
 
@@ -168,9 +165,6 @@ class ModeloClases{
     return $stmt -> fetchall();
 
     }
-
-
-
 
 
 

@@ -98,8 +98,9 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "autoregistro" ||
          $_GET["ruta"] == "gestionacademica" ||
          $_GET["ruta"] == "modalidades" ||
+         $_GET["ruta"] == "orientaciones" ||
          $_GET["ruta"] == "seccion" ||
-         $_GET["ruta"] == "clientes" ||
+         $_GET["ruta"] == "clases" ||
          $_GET["ruta"] == "ventas" ||
          $_GET["ruta"] == "crear-venta" ||
          $_GET["ruta"] == "reportes" ||
@@ -161,6 +162,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/matricula.js"></script>
 <script src="vistas/js/modalidades.js"></script>
 <script src="vistas/js/configuracion.js"></script>
+<script src="vistas/js/orientaciones.js"></script>
 
 
 </body>

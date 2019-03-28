@@ -4,7 +4,7 @@
 
     <h1>
 
-      Administrar Modalidades
+      Administrar Modalalidades, Orientaciones y Clases
 
     </h1>
 
@@ -18,8 +18,7 @@
 
   </section>
 
-  <!-- FORMULARIO DE MODALIDADES -->
-
+  <!-- FORMULARIO DE MODALIDADES  -->
   <section class="content" style="width:550px">
 
     <div class="box">
@@ -79,6 +78,7 @@
                                     <button class="btn btn-danger btnEliminarModalidad" idModalidad="'.$value["Id_Modalidad"].'"><i class="fa fa-times"></i></button>
 
 
+
                                   </div>
 
                                 </td>
@@ -96,19 +96,14 @@
 
               </div>
 
-              <!-- /.content -->
+              <!-- /ultimo div -->
     </div>
 
-    <!-- /.box -->
-
-  </section>
-
-
-<!--=====================================
+    <!--=====================================
 MODAL AGREGAR MODALIDAD
 ======================================-->
 
-<<div id="modalAgregarModalidad" class="modal fade" role="dialog">
+<div id="modalAgregarModalidad" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
 
@@ -257,8 +252,6 @@ MODAL EDITAR MODALIDAD
 
           </div>
 
-
-
         <!--=====================================
         PIE DEL MODAL
         ======================================-->
@@ -284,191 +277,674 @@ MODAL EDITAR MODALIDAD
 
       </div>
 
-     </div>
+    </div>
+
+  </section>
+
+    <!--cerrar la sección-->
+
+      <!-- FORMULARIO DE ORIENTACIONES -->
+
+          <section class="content" style="width:550px">
+
+            <div class="box">
+
+              <!-- BOTON AGREGAR ORIENTACION -->
+                <div class="box-header with-border">
+
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarOrientacion">
+
+                        Agregar Orientación
+
+                      </button>
+
+                    </div>
+
+
+                      <div class="box-body">
+
+                        <table class="table table-bordered table-striped dt-responsive tablas">
+
+                          <thead>
+
+                           <tr>
+
+                             <th style="width:10px">#</th>
+                             <th style="width:10px">Id</th>
+                             <th>Orientación</th>
+                             <th>Acciones</th>
+
+
+                           </tr>
+
+                          </thead>
+
+                          <tbody>
+
+                              <?php
+
+
+
+                              $item = null;
+                              $valor = null;
+                              $orientaciones = ControladorOrientaciones::ctrMostrarOrientaciones($item, $valor);
+
+                             foreach ($orientaciones as $key => $value){
+
+                                echo ' <tr>
+                                        <td>'.($key+1).'</td>
+                                        <td>'.$value["Id_orientacion"].'</td>
+                                        <td>'.$value["Nombre"].'</td>
+
+                                        <td>
+
+                                          <div class="btn-group">
+
+                                            <button class="btn btn-warning btnEditarOrientacion" idOrientacion="'.$value["Id_orientacion"].'" data-toggle="modal" data-target="#modalEditarOrientacion"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btnEliminarOrientacion" idOrientacion="'.$value["Id_orientacion"].'"><i class="fa fa-times"></i></button>
+
+
+                                          </div>
+
+                                        </td>
+
+                                      </tr>';
+                              }
+
+
+                              ?>
+
+
+                          </tbody>
+
+                        </table>
+
+                      </div>
+
+                      <!-- /.content -->
+            </div>
+
+    <!--=====================================
+    MODAL AGREGAR ORIENTACION
+    ======================================-->
+
+    <div id="modalAgregarOrientacion" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+
+        <form role="form" method="post" enctype="multipart/form-data">
+
+          <!--=====================================
+          CABEZA DEL MODAL
+          ======================================-->
+
+          <div class="modal-header" style="background:#3c8dbc; color:white">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <h4 class="modal-title">Agregar Orientacion</h4>
+
+          </div>
+
+          <!--=====================================
+          CUERPO DEL MODAL
+          ======================================-->
+
+          <div class="modal-body">
+
+            <div class="box-body">
+
+              <!-- ENTRADA PARA EL NOMBRE DE LA ORIENTACION -->
+
+              <div class="form-group">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoNombreOrientacion" id="nuevoNombreOrientacion" placeholder="Nombre de la Orientacion" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="" required>
+
+                </div>
+
+              </div>
+
+             </div>
+
+           </div>
+
+          <!--=====================================
+          PIE DEL MODAL
+          ======================================-->
+
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+            <button type="submit" class="btn btn-primary">Guardar Orientación</button>
+
+          </div>
+
+          <?php
+
+            $crearOrientacion = new ControladorOrientaciones();
+            $crearOrientacion -> ctrCrearOrientacion();
+
+          ?>
+
+
+          <?php
+
+            $borrarOrientacion = new ControladorOrientaciones();
+            $borrarOrientacion -> ctrBorrarOrientacion();
+
+          ?>
+
+
+        </form>
+
+      </div>
 
     </div>
 
+  </div>
+
+  <!--=====================================
+    MODAL EDITAR ORIENTACION
+    ======================================-->
+
+    <div id="modalEditarOrientacion" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+
+        <form role="form" method="post" enctype="multipart/form-data">
+
+          <!--=====================================
+          CABEZA DEL MODAL
+          ======================================-->
+
+          <div class="modal-header" style="background:#f39c12; color:white">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <h4 class="modal-title">Editar Orientación</h4>
+
+          </div>
+
+          <!--=====================================
+          CUERPO DEL MODAL
+          ======================================-->
+
+          <div class="modal-body">
+
+            <div class="box-body">
 
 
+              <!-- ID DE ORIENTACION -->
 
-  <!-- FORMULARIO DE CLASES -->
+               <div class="form-group">
+
+                  <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
 
 
-  <section class="content" style="width:550px">
+                    <input type="text" class="form-control input-lg" id="editarIdOrientacion" name="editarIdOrientacion" readonly value="">
 
-    <div class="box">
 
-      <!-- BOTON AGREGAR MODALIDAD -->
-        <div class="box-header with-border">
+                  </div>
 
-              <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarClases">
+                </div>
 
-                Agregar Clases
+              <!-- ENTRADA PARA EL NOMBRE -->
 
-              </button>
+              <div class="form-group">
+
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="editarOrientacion" id="editarOrientacion" value="" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="40" required>
+
+                </div>
+
+              </div>
 
             </div>
 
 
-              <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas">
+          <!--=====================================
+          PIE DEL MODAL
+          ======================================-->
 
-                  <thead>
+          <div class="modal-footer">
 
-                   <tr>
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+            <button type="submit" class="btn btn-primary">Modificar Orientación </button>
+
+          </div>
+
+          <?php
+
+            $editarOrientacion = new ControladorOrientaciones();
+            $editarOrientacion -> ctrEditarOrientacion();
+
+          ?>
+
+           </form>
+
+          </div>
+
+        </div>
+
+     </div>
+
+   <!-- /.box -->
+
+  </section>
+<!-- /.box -->
+<!-- FORMULARIO DE CLASES -->
+
+    <section class="content" style="width:550px">
+
+      <div class="box">
+
+        <!-- BOTON AGREGAR CLASE -->
+          <div class="box-header with-border">
+
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarClase">
+
+                  Agregar Clase
+
+                </button>
+
+              </div>
+
+
+                <div class="box-body">
+
+                  <table class="table table-bordered table-striped dt-responsive tablas">
+
+                    <thead>
+
+                     <tr>
 
                      <th style="width:10px">#</th>
                      <th style="width:10px">Id</th>
                      <th>Clase</th>
                      <th>Duración</th>
-                     <th>Id Orientación</th>
-
                      <th>Acciones</th>
 
 
-                   </tr>
+                     </tr>
 
-                  </thead>
+                    </thead>
 
-                  <tbody>
+                    <tbody>
 
-                      <?php
-
-
-
-                      $item = null;
-                      $valor = null;
-                      $clases = ControladorClases::ctrMostrarClases($item, $valor);
-
-                     foreach ($clases as $key => $value){
-
-                        echo ' <tr>
-                                <td>'.($key+1).'</td>
-                                <td>'.$value["Id_Clase"].'</td>
-                                <td>'.$value["DescripClase"].'</td>
-                                <td>'.$value["Duracion"].'</td>
-                                <td>'.$value["Id_orientacion"].'</td>
-
-                                <td>
-
-                                  <div class="btn-group">
-
-                                    <button class="btn btn-warning btnEditarClase" idClase="'.$value["Id_Clase"].'" data-toggle="modal" data-target="#modalEditarClase"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btnEliminarClase" idClase="'.$value["Id_Clase"].'"><i class="fa fa-times"></i></button>
+                        <?php
 
 
-                                  </div>
 
-                                </td>
+                        $item = null;
+                        $valor = null;
+                        $clases = ControladorClases::ctrMostrarClases($item, $valor);
 
-                              </tr>';
-                      }
+                       foreach ($clases as $key => $value){
+
+                          echo ' <tr>
+                                  <td>'.($key+1).'</td>
+                                  <td>'.$value["Id_Clase"].'</td>
+                                  <td>'.$value["DescripClase"].'</td>
+                                  <td>'.$value["Duracion"].'</td>
+
+                                  <td>
+
+                                    <div class="btn-group">
+
+                                      <button class="btn btn-warning btnEditarClase" idClase="'.$value["Id_Clase"].'" data-toggle="modal" data-target="#modalEditarClase"><i class="fa fa-pencil"></i></button>
+                                      <button class="btn btn-danger btnEliminarClase" idClase="'.$value["Id_Clase"].'"><i class="fa fa-times"></i></button>
 
 
-                      ?>
+                                    </div>
+
+                                  </td>
+
+                                </tr>';
+                        }
 
 
-                  </tbody>
+                        ?>
 
-                </table>
 
-              </div>
+                    </tbody>
 
-              <!-- /.content -->
-    </div>
+                  </table>
 
-    <!-- /.box -->
+                </div>
 
-  </section>
-
+                <!-- /.content -->
+      </div>
 
 <!--=====================================
-MODAL AGREGAR MODALIDAD
+MODAL AGREGAR CLASE
 ======================================-->
 
-<div id="modalAgregarClases" class="modal fade" role="dialog">
+<div id="modalAgregarCLase" class="modal fade" role="dialog">
 
-  <div class="modal-dialog">
+<div class="modal-dialog">
 
-    <div class="modal-content">
+<div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+  <form role="form" method="post" enctype="multipart/form-data">
 
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+    <!--=====================================
+    CABEZA DEL MODAL
+    ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+    <div class="modal-header" style="background:#3c8dbc; color:white">
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Clase</h4>
+      <h4 class="modal-title">Agregar Clase</h4>
 
-        </div>
+    </div>
 
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
+    <!--=====================================
+    CUERPO DEL MODAL
+    ======================================-->
 
-        <div class="modal-body">
+    <div class="modal-body">
 
-          <div class="box-body">
+      <div class="box-body">
 
-            <!-- ENTRADA PARA EL NOMBRE DE LA CLASE -->
+        <!-- ENTRADA PARA SELECCIONAR LA MODALIDAD -->
 
-            <div class="form-group">
+           <div class="form-group">
 
-              <div class="input-group">
+             <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+               <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoDescripClase" id="nuevoDescripClase" placeholder="Nombre de la Clase" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="20" required>
+               <select class="form-control input-lg" name="nuevoSelecModalidad">
 
-              </div>
+                 <option value="">Seleccionar La Modalidad</option>
 
-            </div>
+                 <?php
 
-            <!-- ENTRADA PARA LA DURACIÓN DE LA CLASE -->
+                 $modalidad = ControladorModalidades::ctrCargarSelectModalidad();
+                 foreach ($modalidad as $key => $value) {
+                   echo "<option value='".$value['Id_Modalidad']."'>".$value['DescripModalidad']."</option>";
+                 }
+                   echo $_POST['nuevoSelecModalidad'];
+                 ?>
 
-            <div class="form-group">
+               </select>
 
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevoDuracion" id="nuevoDuracion" placeholder="hh:mm:ss"  pattern="|^[a-zA-Z]*$|" maxlength="8" required>
-
-              </div>
-
-            </div>
+             </div>
 
            </div>
 
-         </div>
+           <!-- ENTRADA PARA SELECCIONAR LA ORIENTACION -->
 
+           <div class="form-group">
 
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
+             <div class="input-group">
 
-        <div class="modal-footer">
+               <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+               <select class="form-control input-lg" name="nuevoSelecOrientacion">
 
-          <button type="submit" class="btn btn-primary">Guardar Clase</button>
+                 <option value="">Seleccionar la orientación de la Clase</option>
+
+                 <?php
+
+                 $role = ControladorModalidades::ctrCargarSelectOrientacion();
+                 foreach ($role as $key => $value) {
+                   echo "<option value='".$value['Id_orientacion']."'>".$value['Nombre']."</option>";
+                 }
+                   echo $_POST['nuevoSelecOrientacion'];
+                 ?>
+
+               </select>
+
+             </div>
+
+           </div>
+
+        <!-- ENTRADA PARA EL NOMBRE DE LA CLASE -->
+
+        <div class="form-group">
+
+          <div class="input-group">
+
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+            <input type="text" class="form-control input-lg" name="nuevoDescripClase" id="nuevoDescripClase" placeholder="Nombre de la CLase" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="" required>
+
+          </div>
 
         </div>
 
-        <?php
+        <!-- ENTRADA PARA LA DURACIÓN DE LA CLASE -->
 
-          $crearClase = new ControladorClases();
-          $crearClase -> ctrCrearClases();
+          <div class="form-group">
 
-        ?>
+            <div class="input-group">
+
+              <span class="input-group-addon"><i class="fa fa-times"></i></span>
+
+              <input type="time" class="form-control input-lg" name="nuevoDuracion" id="nuevoDuracion" placeholder="hrs:min"  pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
+
+            </div>
+
+          </div>
+
+       </div>
+
+     </div>
+
+    <!--=====================================
+    PIE DEL MODAL
+    ======================================-->
+
+    <div class="modal-footer">
+
+      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+      <button type="submit" class="btn btn-primary">Guardar CLase</button>
+
+    </div>
+
+    <?php
+
+      $crearClase = new ControladorClases();
+      $crearClase -> ctrCrearClase();
+
+    ?>
 
 
-      </form>
+    <?php
+
+      $borrarClase = new ControladorClases();
+      $borrarClase -> ctrBorrarClase();
+
+    ?>
+
+
+  </form>
+
+</div>
+
+</div>
+
+</div>
+
+<!--=====================================
+MODAL EDITAR CLASE
+======================================-->
+
+<div id="modalEditarCLase" class="modal fade" role="dialog">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+  <form role="form" method="post" enctype="multipart/form-data">
+
+    <!--=====================================
+    CABEZA DEL MODAL
+    ======================================-->
+
+    <div class="modal-header" style="background:#f39c12; color:white">
+
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      <h4 class="modal-title">Editar Clase</h4>
+
+    </div>
+
+    <!--=====================================
+    CUERPO DEL MODAL
+    ======================================-->
+
+    <div class="modal-body">
+
+      <div class="box-body">
+
+
+        <!-- ID DE LA CLASE -->
+
+         <div class="form-group">
+
+            <div class="input-group">
+
+              <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+
+
+              <input type="text" class="form-control input-lg" id="editarIdClase" name="editarIdClase" readonly value="">
+
+
+            </div>
+
+          </div>
+
+          <!-- ENTRADA PARA SELECCIONAR LA MODALIDAD -->
+
+             <div class="form-group">
+
+               <div class="input-group">
+
+                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+
+                 <select class="form-control input-lg" name="editarSelecModalidad">
+
+                   <option value="">Seleccionar La Modalidad</option>
+
+                   <?php
+
+                   $modalidad = ControladorModalidades::ctrCargarSelectModalidad();
+                   foreach ($modalidad as $key => $value) {
+                     echo "<option value='".$value['Id_Modalidad']."'>".$value['DescripModalidad']."</option>";
+                   }
+                     echo $_POST['editarSelecModalidad'];
+                   ?>
+
+                 </select>
+
+               </div>
+
+             </div>
+
+             <!-- ENTRADA PARA SELECCIONAR LA ORIENTACION -->
+
+             <div class="form-group">
+
+               <div class="input-group">
+
+                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+
+                 <select class="form-control input-lg" name="editarSelecOrientacion">
+
+                   <option value="">Seleccionar la orientación de la Clase</option>
+
+                   <?php
+
+                   $role = ControladorModalidades::ctrCargarSelectOrientacion();
+                   foreach ($role as $key => $value) {
+                     echo "<option value='".$value['Id_orientacion']."'>".$value['Nombre']."</option>";
+                   }
+                     echo $_POST['editarSelecOrientacion'];
+                   ?>
+
+                 </select>
+
+               </div>
+
+             </div>
+
+          <!-- ENTRADA PARA EL NOMBRE DE LA CLASE -->
+
+          <div class="form-group">
+
+            <div class="input-group">
+
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+              <input type="text" class="form-control input-lg" name="editarDescripClase" id="editarDescripClase" placeholder="Nombre de la CLase" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="" required>
+
+            </div>
+
+          </div>
+
+          <!-- ENTRADA PARA LA DURACIÓN DE LA CLASE -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-times"></i></span>
+
+                <input type="time" class="form-control input-lg" name="editarDuracion" id="editarDuracion" placeholder="hrs:min"  pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+
+
+
+    <!--=====================================
+    PIE DEL MODAL
+    ======================================-->
+
+    <div class="modal-footer">
+
+      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+      <button type="submit" class="btn btn-primary">Modificar CLase </button>
+
+    </div>
+
+    <?php
+
+      $editarClase = new ControladorClases();
+      $editarClase -> ctrEditarClase();
+
+    ?>
+
+     </form>
 
     </div>
 
@@ -476,93 +952,8 @@ MODAL AGREGAR MODALIDAD
 
 </div>
 
-<!--=====================================
-MODAL EDITAR MODALIDAD
-======================================-->
+</section>
 
-<div id="modalEditarModalidad" class="modal fade" role="dialog">
-
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <form role="form" method="post" enctype="multipart/form-data">
-
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#f39c12; color:white">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Editar Modalidad</h4>
-
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-
-            <!-- ID DE MODALIDAD -->
-
-             <div class="form-group">
-
-                <div class="input-group">
-
-                  <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
-
-
-                  <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" readonly value="">
-
-
-                </div>
-
-              </div>
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-
-                <input type="text" class="form-control input-lg" name="editarNombre1" id="editarNombre1" value="" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" maxlength="15" required>
-
-              </div>
-
-            </div>
-
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Modificar usuario</button>
-
-        </div>
-
-        <?php
-
-          $editarUsuario = new ControladorUsuarios();
-          $editarUsuario -> ctrEditarUsuario();
-
-        ?>
-
-      </form>
-
-      </div>
-
-    </div>
-
-  </div>
+<!-- /.ultimo div -->
+</div>
+<!-- /.content-wrapper -->

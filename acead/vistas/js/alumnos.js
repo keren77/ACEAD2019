@@ -46,41 +46,6 @@ $(".tablas").on("click", ".btnEditarAlumno", function(){
 })
 
 
-/*=============================================
-REVISAR SI EL ALUMNO YA ESTÁ REGISTRADO
-=============================================*/
-
-$("#nuevoAlumno").change(function(){
-
-	$(".alert").remove();
-
-	var alumno = $(this).val();
-
-	var datos = new FormData();
-	datos.append("validarAlumno", alumno);
-
-	 $.ajax({
-	    url:"ajax/alumnos.ajax.php",
-	    method:"POST",
-	    data: datos,
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    dataType: "json",
-	    success:function(respuesta){
-
-	    	if(respuesta){
-
-	    		$("#nuevoAlumno").parent().after('<div class="alert alert-warning">Este alumno ya existe en la base de datos</div>');
-
-	    		$("#nuevoAlumno").val("");
-
-	    	}
-
-	    }
-
-	})
-})
 
 /*=============================================
 ELIMINAR ALUMNO

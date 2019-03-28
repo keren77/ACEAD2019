@@ -314,6 +314,16 @@ MODAL AGREGAR ALUMNO
 
             </div>
 
+            <!-- ENTRADA PARA LA DIRECCIÓN -->
+
+            <div class="form-group">
+
+              <label>Textarea</label>
+
+              <textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
+
+            </div>
+
           </div>
 
         </div>

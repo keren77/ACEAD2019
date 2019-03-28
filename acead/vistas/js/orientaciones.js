@@ -1,19 +1,19 @@
 
 /*=============================================
-EDITAR MODALIDADES
+EDITAR ORIENTACIONES
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarModalidad", function(){
+$(".tablas").on("click", ".btnEditarOrientacion", function(){
 
-	var idModalidad = $(this).attr("idModalidad");
+	var idOrientacion = $(this).attr("idOrientacion");
 
 	var datos = new FormData();
 
-	datos.append("idModalidad", idModalidad);
+	datos.append("idOrientacion", idOrientacion);
 
 	$.ajax({
 
-		url:"ajax/modalidades.ajax.php",
+		url:"ajax/orientaciones.ajax.php",
 		method: "POST",
 		data: datos,
 		cache: false,
@@ -23,8 +23,8 @@ $(".tablas").on("click", ".btnEditarModalidad", function(){
 		success: function(respuesta){
 
                         //alert(respuesta);
-			$("#editarIdModalidad").val(respuesta["Id_Modalidad"]);
-			$("#editarModalidad").val(respuesta["DescripModalidad"]);
+			$("#editarIdOrientacion").val(respuesta["Id_orientacion"]);
+			$("#editarOrientacion").val(respuesta["Nombre"]);
 
 		},
                 error: function(xhr, status){
@@ -36,28 +36,28 @@ $(".tablas").on("click", ".btnEditarModalidad", function(){
 })
 
 /*=============================================
-ELIMINAR MODALIDAD
+ELIMINAR ORIENTACION
 =============================================*/
-$(".tablas").on("click", ".btnEliminarModalidad", function(){
+$(".tablas").on("click", ".btnEliminarOrientacion", function(){
 
-  var idModalidad = $(this).attr("idModalidad");
+  var idOrientacion = $(this).attr("idOrientacion");
 
 
   swal({
-    title: '¿Está seguro de borrar esta modalidad?',
+    title: '¿Está seguro de borrar esta orientacion?',
     text: "¡Si no lo está puede cancelar la accíón!",
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Si, borrar Modalidad!'
+      confirmButtonText: 'Si, borrar orientacion!'
   }).then((result)=>{
 
     if(result.value){
 
 
-      window.location = "index.php?ruta=modalidades&idModalidad="+idModalidad;
+      window.location = "index.php?ruta=orientaciones&idOrientacion="+idOrientacion;
 
 
     }
