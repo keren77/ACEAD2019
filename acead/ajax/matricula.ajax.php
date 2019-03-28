@@ -12,6 +12,17 @@ if (isset($_GET["id"])) {
     $editar->ajaxOrientaciones();
 }
 
+/*=============================================
+VALIDAR NO REPETIR MATRICULA
+=============================================*/
+
+if(isset( $_POST["IdAlumno"])){
+
+ $validarMatricula = new AjaxMatricula();
+ $validarMatricula -> $validarMatricula = $_POST["IdAlumno"];
+ $validarMatricula -> ajaxValidarMatricula();
+
+}
 
 class AjaxMatricula{
 
@@ -36,8 +47,29 @@ class AjaxMatricula{
 
  	echo json_encode($con, JSON_UNESCAPED_UNICODE);
 
- }
+  }
 
+ /*=============================================
+ VALIDAR NO REPETIR USUARIO
+ =============================================*/
+
+ public $validarMatricula;
+
+ public function ajaxValidarMatricula(){
+
+   $alumno = "IdAlumno";
+   $mod = "Id_Modalidad";
+   $ori = "Id_Orientacion";
+   $clas = "Id_Clase";
+   $per = "Id_PeriodoAcm"
+
+   $valor = $this->validarMatricula;
+
+   $respuesta = ControladorUsuarios::ctrMostrarUsuarios($alumno, $mod, $ori, $clas, $per);
+
+   echo json_encode($respuesta);
+
+ }
 
 
 }

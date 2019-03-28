@@ -234,8 +234,9 @@ switch ($funcion){
 function metodo_cargaorientacion(){
     $idmodalidad = filter_input(INPUT_POST, 'idmodalidad');
 
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT TOR.id_orientacion AS ID, TOR.nombre AS nombre FROM tbl_Orientacion TOR WHERE TOR.Id_modalidad = ".$idmodalidad.";");
-    $stmt->execute();
+    //$stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT TOR.id_orientacion AS ID, TOR.nombre AS nombre FROM tbl_Orientacion TOR WHERE TOR.Id_modalidad = ".$idmodalidad.";");
+		$stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT tbl_orientacion.Id_orientacion as ID, Nombre as nombre FROM tbl_orientacion INNER JOIN tbl_mod_orientacion ON tbl_mod_orientacion.Id_Orientacion = tbl_orientacion.Id_orientacion where id_modalidad =$idmodalidad");
+		$stmt->execute();
 
     $resultado = $stmt->fetchAll(PDO::FETCH_BOTH);
 
@@ -243,10 +244,11 @@ function metodo_cargaorientacion(){
 
 }
 function metodo_cargaclases(){
-    $idmodalidad = filter_input(INPUT_POST, 'idorientacion');
+    $idorientacion = filter_input(INPUT_POST, 'idorientacion');
 
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT TC.id_clase AS IDC, TC.DescripClase AS DC, TC.Duracion AS DUR FROM tbl_Clases TC WHERE TC.Id_orientacion = ".$idmodalidad.";");
-    $stmt->execute();
+    //$stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT TC.id_clase AS IDC, TC.DescripClase AS DC, TC.Duracion AS DUR FROM tbl_Clases TC WHERE TC.Id_orientacion = ".$idmodalidad.";");
+		$stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT tbl_clases.Id_Clase as IDC, DescripClase as DC FROM tbl_clases INNER JOIN tbl_orientacion_clase ON tbl_orientacion_clase.Id_Clases = tbl_clases.Id_Clase where id_orientacion =$idorientacion");
+		$stmt->execute();
 
     $resultado = $stmt->fetchAll(PDO::FETCH_BOTH);
 
@@ -256,8 +258,10 @@ function metodo_cargaclases(){
 function metodo_cargasecciones(){
     $idclase = filter_input(INPUT_POST, 'idclase');
 
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("select TS.id_seccion AS ISE, TS.DescripSeccion AS DS from tbl_secciones TS WHERE TS.id_clase = ".$idclase.";");
-    $stmt->execute();
+    //$stmt = ConexionBD::Abrir_Conexion()->prepare("select TS.id_seccion AS ISE, TS.DescripSeccion AS DS from tbl_secciones TS WHERE TS.id_clase = ".$idclase.";");
+		$stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT tbl_secciones.Id_Seccion as ISE, DescripSeccion as DS FROM tbl_secciones INNER JOIN tbl_clases_secciones ON tbl_clases_secciones.Id_Seccion = tbl_secciones.Id_Seccion where id_clase =$idclase");
+
+		$stmt->execute();
 
     $resultado = $stmt->fetchAll(PDO::FETCH_BOTH);
 
