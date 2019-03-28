@@ -61,17 +61,23 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 182px;" >
-                                            NOMBRE ALUMNO
+                            <table id="tblalumnos" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                <thead style="text-align: center;">
+                                    <tr role="row" class="text-center">
+                                        <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 182px;" >
+                                            ID
                                         </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 224px;">
-                                           NOTA
+                                        <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 182px;" >
+                                            NOMBRE
                                         </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 199px;">
-                                           OBSERVACION
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 224px;">
+                                           CORREO ELECTRONICO
+                                        </th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 199px;">
+                                           TELEFONO
+                                        </th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 199px;">
+                                           REGISTRAR
                                         </th>
                                         
                                     </tr>
@@ -112,10 +118,81 @@
 </div>
 <!-- /.content-wrapper -->
 
+<!-- MODAL PARA AGREGAR CALIFICACIONES-->
+<div id="modalagregarnota" class="modal fade in" role="dialog" style="display: block; padding-left: 17px;">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#f39c12; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">×</button>
+
+          <h4 class="modal-title">AGREGAR CALIFICACION</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+            <!-- ENTRADA PARA EL ID ALUMNO -->
+
+            <div class="form-group">
+
+               <div class="input-group">
+
+                 <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+
+                 <input type="number"  class="form-control input-lg" id="txtnota" name="nota" max="100" min="0" maxlength="3">
+
+
+               </div>
+
+             </div>
+
+
+           </div>
+
+        </div>
+
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary" id="btnagrega">AGREGAR CALIFICACION</button>
+
+        </div>
+
+        
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
 <script>
     $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
+        $('#tblalumnos').DataTable()
+        $('#tbl').DataTable({
             'paging': true,
             'lengthChange': false,
             'searching': false,
@@ -123,7 +200,7 @@
             'info': true,
             'autoWidth': false
         })
-    })
+    });
 </script>
 
 <script src="../acead/vistas/js/registracalificaciones.js"></script>

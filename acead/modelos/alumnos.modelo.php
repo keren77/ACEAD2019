@@ -218,6 +218,12 @@ switch ($funcion){
     case 'cargahistorial': 
     metodo_cargahistorial();
     break;
+    case 'llenaselect': 
+    metodo_llenaselect();
+    break;
+    case 'cargaalumnos': 
+    metodo_cargaalumnos();
+    break;
     case 'registracali': 
     metodo_registracali();
     break;
@@ -258,7 +264,7 @@ function metodo_cargasecciones(){
     echo json_encode($resultado);
 
 }
-<<<<<<< .mine
+
 
 function metodo_cargahistorial(){
     @session_start();
@@ -270,7 +276,7 @@ function metodo_cargahistorial(){
       
 }
 
-function metodo_registracali(){
+function metodo_llenaselect(){
     @session_start();
     $idu= $_SESSION["usuario"];
     $stmt= ConexionBD::Abrir_Conexion()->prepare("SELECT TS.id_seccion AS IDS, TS.descripseccion AS DS FROM TBL_SECCIONES TS WHERE ID_USUARIO=".$idu.";");
@@ -279,9 +285,17 @@ function metodo_registracali(){
       echo json_encode($resultado);
 }
 
-
-||||||| .r2
-
-
-=======
->>>>>>> .r5
+function metodo_cargaalumnos(){
+    @session_start();
+    $idu= $_SESSION["usuario"];
+    $ids = filter_input(INPUT_POST, 'id_seccion');
+    $stmt= ConexionBD::Abrir_Conexion()->prepare("select TA.id_alumno AS IDA, concat(TA.primernombre, ' ', TA.segundonombre, ' ', TA.primerapellido, ' ', TA.segundoapellido) AS nombre, TA.correoelectronico AS CE, TA.telefono AS TEL from (tbl_matricula TM inner join tbl_alumnos TA on TM.id_alumno = TA.id_alumno) inner join tbl_Secciones TS on TM.id_seccion = TS.id_seccion where TS.id_usuario = ".$idu." and TS.id_seccion=".$ids.";");
+    $stmt -> execute();
+    $resultado = $stmt->fetchAll(PDO::FETCH_BOTH);
+      echo json_encode($resultado);
+    
+}
+function metodo_registracali(){
+    $ida = filter_input(INPUT_POST, 'id_alumno');
+    
+}
