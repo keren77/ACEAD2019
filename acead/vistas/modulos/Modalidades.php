@@ -4,7 +4,7 @@
 
     <h1>
 
-      Administrar Modalalidades, Orientaciones y Clases
+      Administrar Modalidades, Orientaciones y Clases
 
     </h1>
 
@@ -19,7 +19,7 @@
   </section>
 
   <!-- FORMULARIO DE MODALIDADES  -->
-  <section class="content" style="width:550px">
+  <section class="content" style="width:900px">
 
     <div class="box">
 
@@ -285,7 +285,7 @@ MODAL EDITAR MODALIDAD
 
       <!-- FORMULARIO DE ORIENTACIONES -->
 
-          <section class="content" style="width:550px">
+          <section class="content" style="width:900px">
 
             <div class="box">
 
@@ -548,9 +548,11 @@ MODAL EDITAR MODALIDAD
 
   </section>
 <!-- /.box -->
+
+
 <!-- FORMULARIO DE CLASES -->
 
-    <section class="content" style="width:550px">
+    <section class="content" style="width:900px">
 
       <div class="box">
 

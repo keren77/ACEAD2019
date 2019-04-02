@@ -45,8 +45,9 @@ class ModeloAlumnos{
 	static public function mdlIngresarAlumno($tabla, $datos){
 
 
-		$stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, FechaNacimiento, CorreoElectronico, Telefono, Cedula,  Id_estadocivil, Id_genero)
-																									VALUES (:nombre1, :nombre2, :apellido1, :apellido2, :FechaNac, :email, :telefono, :cedula, :estcivil, :genero)");
+
+		$stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, FechaNacimiento, CorreoElectronico, Telefono, Cedula,  Id_estadocivil, Id_genero, Id_Descuento)
+																									VALUES (:nombre1, :nombre2, :apellido1, :apellido2, :FechaNac, :email, :telefono, :cedula, :estcivil, :genero, :descuento)");
 
 
 		$stmt->bindParam(":nombre1", $datos["PrimerNombre"], PDO::PARAM_STR);
@@ -59,10 +60,13 @@ class ModeloAlumnos{
 		$stmt->bindParam(":cedula", $datos["Cedula"], PDO::PARAM_STR);
     $stmt->bindParam(":estcivil", $datos["Id_EstadoCivil"], PDO::PARAM_STR);
     $stmt->bindParam(":genero", $datos["Id_Genero"], PDO::PARAM_STR);
+		$stmt->bindParam(":descuento", $datos["Id_Descuento"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
 			return "ok";
+
+			
 
 		}else{
 

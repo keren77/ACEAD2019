@@ -25,7 +25,8 @@ class ControladorAlumnos{
 										 "Telefono" => $_POST["nuevoTelefono"],
 										 "Cedula" => $_POST['nuevoCedula'],
 										 "Id_EstadoCivil" => $_POST["nuevoEstCivil"],
-										 "Id_Genero" => $_POST["nuevoGenero"]);
+										 "Id_Genero" => $_POST["nuevoGenero"],
+										 "Id_Descuento" => $_POST["nuevoDescuento"]);
 
 
 				$respuesta = ModeloAlumnos::mdlIngresarAlumno($tabla, $datos);
@@ -128,7 +129,9 @@ class ControladorAlumnos{
 										 "Telefono" => $_POST["editarTelefono"],
 										 "Cedula" => $_POST["editarCedula"],
 										 "Id_EstadoCivil" => $_POST["editarEstCivil"],
-										 "Id_Genero" => $_POST["editarGenero"]);
+										 "Id_Genero" => $_POST["editarGenero"],
+										 "Id_Descuento" => $_POST["editarDescuento"]);
+
 
 				$respuesta = ModeloAlumnos::mdlEditarAlumno($tabla, $datos);
 
@@ -251,5 +254,18 @@ class ControladorAlumnos{
 
 	}
 
+	/*=============================================
+	MOSTRAR DESCUENTO
+	=============================================*/
+
+	static public function ctrCargarSelectDescuento(){
+
+		$tabla = "tbl_descuento";
+
+		$respuesta = ModeloAlumnos::mdlCargarSelect($tabla);
+
+		return $respuesta;
+
+	}
 
 }
