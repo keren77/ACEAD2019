@@ -42,7 +42,7 @@ class ModeloClases{
   =============================================*/
 
   static public function mdlIngresarClases($tabla, $datos){
-
+  echo "<script type='text/javascript'>alert('neles')</script>";
 
     $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (DescripClase, Duracion)
                                                   VALUES (:descriclase, :duracion)");

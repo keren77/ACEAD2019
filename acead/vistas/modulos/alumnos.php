@@ -268,11 +268,11 @@ MODAL AGREGAR ALUMNO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
                 <select class="form-control input-lg" name="nuevoEstCivil">
 
-                  <option value="">Seleccionar Estado Civil</option>
+                  <option value="">SELECCIONAR ESTADO CIVIL</option>
 
                   <?php
 
@@ -294,11 +294,11 @@ MODAL AGREGAR ALUMNO
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                <span class="input-group-addon"><i class="fa  fa-venus-mars"></i></span>
 
                 <select class="form-control input-lg" name="nuevoGenero">
 
-                  <option value="">Seleccionar Genero</option>
+                  <option value="">SELECCIONAR GÉNERO</option>
 
                   <?php
 
@@ -314,7 +314,7 @@ MODAL AGREGAR ALUMNO
 
             </div>
 
-            <!-- ENTRADA PARA SELECCIONAR EL TIPO DE DDESCUENTO -->
+            <!-- ENTRADA PARA SELECCIONAR EL TIPO DE DESCUENTO -->
 
             <div class="form-group">
 
@@ -324,7 +324,7 @@ MODAL AGREGAR ALUMNO
 
                 <select class="form-control input-lg" name="nuevoDescuento">
 
-                  <option value="">Seleccionar Tipo de descuento</option>
+                  <option value="">SELECCIONAR TIPO DE DESCUENTO</option>
 
                   <?php
 
@@ -337,6 +337,17 @@ MODAL AGREGAR ALUMNO
                 </select>
 
               </div>
+
+            </div>
+
+            <!-- ENTRADA PARA LA DIRECCIÓN -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+
+              <textarea class="form-control" rows="3" name= "nuevoDireccion" placeholder="DIRECCIÓN"></textarea>
 
             </div>
 

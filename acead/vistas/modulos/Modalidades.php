@@ -557,15 +557,15 @@ MODAL EDITAR MODALIDAD
       <div class="box">
 
         <!-- BOTON AGREGAR CLASE -->
-          <div class="box-header with-border">
+        <div class="box-header with-border">
 
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarClase">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarClase">
 
-                  Agregar Clase
+                Agregar Clase
 
-                </button>
+              </button>
 
-              </div>
+            </div>
 
 
                 <div class="box-body">
@@ -637,7 +637,7 @@ MODAL EDITAR MODALIDAD
 MODAL AGREGAR CLASE
 ======================================-->
 
-<div id="modalAgregarCLase" class="modal fade" role="dialog">
+<div id="modalAgregarClase" class="modal fade" role="dialog">
 
 <div class="modal-dialog">
 
@@ -791,7 +791,7 @@ MODAL AGREGAR CLASE
 MODAL EDITAR CLASE
 ======================================-->
 
-<div id="modalEditarCLase" class="modal fade" role="dialog">
+<div id="modalEditarClase" class="modal fade" role="dialog">
 
 <div class="modal-dialog">
 

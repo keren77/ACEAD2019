@@ -62,11 +62,12 @@ class ModeloAlumnos{
     $stmt->bindParam(":genero", $datos["Id_Genero"], PDO::PARAM_STR);
 		$stmt->bindParam(":descuento", $datos["Id_Descuento"], PDO::PARAM_STR);
 
+
 		if($stmt->execute()){
 
 			return "ok";
 
-			
+
 
 		}else{
 
@@ -78,7 +79,8 @@ class ModeloAlumnos{
 
 		$stmt = null;
 
-	}
+		}
+
 
 	/*=============================================
 	EDITAR ALUMNO
