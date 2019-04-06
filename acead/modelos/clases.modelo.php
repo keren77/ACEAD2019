@@ -38,7 +38,7 @@ class ModeloClases{
   }
 
   /*=============================================
-  REGISTRO DE MODALIDADES Y ORIENTACION DE LA CLASE
+  REGISTRO DE MODALIDAD Y ORIENTACION DE LA CLASE
   =============================================*/
 
   static public function mdlIngresarClaseOrientaModali($tabla, $datos){
@@ -98,11 +98,11 @@ class ModeloClases{
   EDITAR CLASES
   =============================================*/
 
-  static public function mdlEditarClase($tabla, $datos){
+  static public function mdlEditarClaseOrientaModali($tabla, $datos){
 
 
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("UPDATE $tabla SET DescripClase =: descripclase,
-                                                                     Duracion =: duracion,
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("UPDATE $tabla SET Id_Modalidad =: idmodalidad,
+                                                                     Id_Orientacion =: orientacion,
                                                     WHERE Id_Clase = :id");
 
 

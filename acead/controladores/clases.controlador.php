@@ -56,7 +56,7 @@ class ControladorClases{
                        "Duracion" => $_POST["nuevoDuracion"]);
 
 
-				$respuesta = ModeloClases::mdlIngresarClase($tabla, $datos);
+				$respuesta = ModeloClases::mdlIngresarClases($tabla, $datos);
 
 				if($respuesta == "ok"){
 
@@ -186,6 +186,37 @@ class ControladorClases{
     }
 
   }
+
+
+  /*=============================================
+  EDITAR CLASES TABLA MODALIDAD-ORIENTACION
+  =============================================*/
+
+  static public function ctrEditarClaseOrientaModali(){
+
+
+   if(isset($_POST["editarClase"])){
+
+
+     if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarClase"])){
+
+       $tabla = "tbl_mod_orientacion";
+
+       $datos = array("Id_Clase" => $_POST["editarIdClase"],
+                    "Id_Modalidad" => $_POST["editarSelectModalidad"],
+                    "Id_Orientacion" => $_POST["editarSelectOrientacion"]);
+
+       $respuesta = ModeloClases::mdlEditarClaseOrientaModali($tabla, $datos);
+
+       if($respuesta == "ok"){
+
+     }
+
+    }
+
+  }
+
+    }
 
 
   /*=============================================
