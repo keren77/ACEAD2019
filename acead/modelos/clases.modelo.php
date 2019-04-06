@@ -38,14 +38,42 @@ class ModeloClases{
   }
 
   /*=============================================
+  REGISTRO DE MODALIDADES Y ORIENTACION DE LA CLASE
+  =============================================*/
+
+  static public function mdlIngresarClaseOrientaModali($tabla, $datos){
+
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (Id_Modalidad, Id_Orientacion)
+                                                  VALUES (:idmodalidad, :idorientacion)");
+
+    $stmt->bindParam(":idmodalidad", $datos["Id_Modalidad"], PDO::PARAM_STR);
+    $stmt->bindParam(":idorientacion", $datos["Id_Orientacion"], PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+      return "ok";
+
+    }else{
+
+      return "error";
+      echo "<script type='text/javascript'>alert('neles')</script>";
+    }
+
+    $stmt->close();
+
+    $stmt = null;
+
+  }
+
+
+  /*=============================================
   REGISTRO DE CLASES
   =============================================*/
 
   static public function mdlIngresarClases($tabla, $datos){
-  echo "<script type='text/javascript'>alert('neles')</script>";
 
     $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (DescripClase, Duracion)
-                                                  VALUES (:descriclase, :duracion)");
+                                                  VALUES (:descripclase, :duracion)");
 
     $stmt->bindParam(":descripclase", $datos["DescripClase"], PDO::PARAM_STR);
     $stmt->bindParam(":duracion", $datos["Duracion"], PDO::PARAM_STR);

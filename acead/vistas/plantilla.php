@@ -164,6 +164,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/modalidades.js"></script>
 <script src="vistas/js/configuracion.js"></script>
 <script src="vistas/js/orientaciones.js"></script>
+<script src="vistas/js/clases.js"></script>
 
 
 </body>

@@ -139,7 +139,7 @@ MODAL AGREGAR MODALIDAD
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoDescripModalidad" id="nuevoDescripModalidad" placeholder="Nombre de la Modalidad" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="" required>
+                <input type="text" class="form-control input-lg" name="nuevoDescripModalidad" id="nuevoDescripModalidad" placeholder="Nombre de la Modalidad"  style="text-transform: uppercase" maxlength="" required>
 
               </div>
 
@@ -244,7 +244,7 @@ MODAL EDITAR MODALIDAD
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarModalidad" id="editarModalidad" value="" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="40" required>
+                <input type="text" class="form-control input-lg" name="editarModalidad" id="editarModalidad" value="" style="text-transform: uppercase" maxlength="40" required>
 
               </div>
 
@@ -404,7 +404,7 @@ MODAL EDITAR MODALIDAD
 
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                  <input type="text" class="form-control input-lg" name="nuevoNombreOrientacion" id="nuevoNombreOrientacion" placeholder="Nombre de la Orientacion" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="" required>
+                  <input type="text" class="form-control input-lg" name="nuevoNombreOrientacion" id="nuevoNombreOrientacion" placeholder="Nombre de la Orientacion" style="text-transform: uppercase" maxlength="" required>
 
                 </div>
 
@@ -507,7 +507,7 @@ MODAL EDITAR MODALIDAD
 
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                  <input type="text" class="form-control input-lg" name="editarOrientacion" id="editarOrientacion" value="" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="40" required>
+                  <input type="text" class="form-control input-lg" name="editarOrientacion" id="editarOrientacion" value=""  style="text-transform: uppercase" maxlength="40" required>
 
                 </div>
 
@@ -727,7 +727,7 @@ MODAL AGREGAR CLASE
 
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-            <input type="text" class="form-control input-lg" name="nuevoDescripClase" id="nuevoDescripClase" placeholder="Nombre de la CLase" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="" required>
+            <input type="text" class="form-control input-lg" name="nuevoDescripClase" id="nuevoDescripClase" placeholder="Nombre de la CLase" style="text-transform: uppercase" maxlength="" required>
 
           </div>
 
@@ -767,6 +767,14 @@ MODAL AGREGAR CLASE
 
       $crearClase = new ControladorClases();
       $crearClase -> ctrCrearClase();
+
+    ?>
+
+      <?php
+
+      $crearClaseOrientaModali = new ControladorClases();
+      $crearClaseOrientaModali -> ctrCrearClaseOrientaModali();
+
 
     ?>
 
@@ -898,7 +906,7 @@ MODAL EDITAR CLASE
 
               <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-              <input type="text" class="form-control input-lg" name="editarDescripClase" id="editarDescripClase" placeholder="Nombre de la CLase" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" maxlength="" required>
+              <input type="text" class="form-control input-lg" name="editarDescripClase" id="editarDescripClase" placeholder="Nombre de la CLase"  style="text-transform: uppercase" maxlength="" required>
 
             </div>
 
