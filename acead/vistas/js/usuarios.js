@@ -166,7 +166,7 @@ $("#nuevoUsuario").change(function(){
 	    processData: false,
 	    dataType: "json",
 	    success:function(respuesta){
-
+				ALERT(respuesta);
 	    	if(respuesta){
 
 	    		$("#nuevoUsuario").parent().after('<div class="alert alert-warning">Este usuario ya existe en la base de datos</div>');

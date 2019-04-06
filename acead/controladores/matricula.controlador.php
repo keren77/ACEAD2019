@@ -18,16 +18,16 @@ class ControladorMatricula{
   }
 
 
-  
+
   /*=============================================
 	MOSTRAR MATRICULA
 	=============================================*/
 
-	static public function ctrMostrarMatricula($item, $valor){
+	static public function ctrMostrarMatricula(){
 
 		$tabla = "tbl_matricula";
 
-		$respuesta = ModeloMatricula::MdlMostrarMatricula($tabla, $item, $valor);
+		$respuesta = ModeloMatricula::MdlMostrarMatricula($tabla);
 
 		return $respuesta;
 	}

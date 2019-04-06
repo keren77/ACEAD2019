@@ -347,7 +347,9 @@ MODAL AGREGAR ALUMNO
 
                 <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
 
-              <textarea class="form-control" rows="3" name= "nuevoDireccion" placeholder="DIRECCIÓN"></textarea>
+                <textarea class="form-control" rows="3" name= "nuevoDireccion" placeholder="DIRECCIÓN"></textarea>
+
+              </div>
 
             </div>
 

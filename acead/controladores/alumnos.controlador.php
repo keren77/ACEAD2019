@@ -26,7 +26,8 @@ class ControladorAlumnos{
 										 "Cedula" => $_POST['nuevoCedula'],
 										 "Id_EstadoCivil" => $_POST["nuevoEstCivil"],
 										 "Id_Genero" => $_POST["nuevoGenero"],
-										 "Id_Descuento" => $_POST["nuevoDescuento"]);
+										 "Id_Descuento" => $_POST["nuevoDescuento"],
+									 	 "Direccion" => $_POST["nuevoDireccion"]);
 
 
 				$respuesta = ModeloAlumnos::mdlIngresarAlumno($tabla, $datos);

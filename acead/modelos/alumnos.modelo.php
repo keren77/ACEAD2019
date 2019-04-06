@@ -43,11 +43,21 @@ class ModeloAlumnos{
 	=============================================*/
 
 	static public function mdlIngresarAlumno($tabla, $datos){
-
+		$dir = $datos["Direccion"];
+		echo "<script type='text/javascript'>alert('$dir')</script>";
 
 
 		$stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, FechaNacimiento, CorreoElectronico, Telefono, Cedula,  Id_estadocivil, Id_genero, Id_Descuento)
-																									VALUES (:nombre1, :nombre2, :apellido1, :apellido2, :FechaNac, :email, :telefono, :cedula, :estcivil, :genero, :descuento)");
+			   																					VALUES (:nombre1, :nombre2, :apellido1, :apellido2, :FechaNac, :email, :telefono, :cedula, :estcivil, :genero, :descuento)");
+
+		$stmt2 = ConexionBD::Abrir_Conexion()->prepare("SELECT MAX(Id_Alumno) as maxval FROM tbl_alumnos");
+		$max_row = $stmt2 -> fetchAll(PDO::FETCH_ASSOC);
+		//$max = $max_row["maxval"];
+		//$max++;
+		//echo "<script type='text/javascript'>alert('$stm3')</script>";
+
+		$stmt3 = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO tbl_direcciones (Direccion, Id_Alumno)
+																									VALUES (:direccion, $max_row)");
 
 
 		$stmt->bindParam(":nombre1", $datos["PrimerNombre"], PDO::PARAM_STR);
@@ -61,6 +71,8 @@ class ModeloAlumnos{
     $stmt->bindParam(":estcivil", $datos["Id_EstadoCivil"], PDO::PARAM_STR);
     $stmt->bindParam(":genero", $datos["Id_Genero"], PDO::PARAM_STR);
 		$stmt->bindParam(":descuento", $datos["Id_Descuento"], PDO::PARAM_STR);
+
+		$stmt3->bindParam(":direccion", $datos["Direccion"], PDO::PARAM_STR);
 
 
 		if($stmt->execute()){

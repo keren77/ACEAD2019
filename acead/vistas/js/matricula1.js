@@ -76,6 +76,7 @@ function rellenarSecciones(idc){
         data: param1,
         dataType: 'json',
         success: function(data){
+            //alert(data);
             $('#adicionar3').empty();
             $.each(data, function(i, item){
                 //alert(item.ID);
@@ -94,39 +95,47 @@ function rellenarSecciones(idc){
 REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
 =============================================*/
 
-$("#IdAlumno").change(function(){
-
-	$(".alert").remove();
-
+$("#adicionar3").change(function(){
+//alert("Clase Matriculada");
 	alumno = $('#IdAlumno').val();
   modalidad = $('#matriculaModalidad').val();
   orientacion = $('#adicionar1').val();
   clase = $('#adicionar2').val();
+  secc = $('#adicionar3').val();
   periodo = $('1').val();
-
+  //alert(modalidad);
   var datos = {
-      'Id_Alumno': alumno,
-      'Id_Modalidad': modalidad,
-      'Id_Orientacion': orientacion,
-      'Id_Clase': clase,
-      'Id_PeriodoAcm': periodo
-  };
+      "Id_Alumno": alumno,
+      "Id_Modalidad": modalidad,
+      "Id_Orientacion": orientacion,
+      "Id_Clase": clase,
+      "Id_Seccion": secc,
+      "Id_PeriodoAcm": periodo
+    };
+    //alert(datos["Id_Alumno"]);
 
-	 $.ajax({
-	    url:"ajax/matricula.ajax.php",
-	    method:"POST",
+   $.ajax({
+
+	    url:"../acead/modelos/matricula.modelo.php?caso=verificarmatricula",
+      //url:"ajax/matricula.ajax.php",
+      method:"POST",
 	    data: datos,
 	    cache: false,
 	    contentType: false,
 	    processData: false,
 	    dataType: "json",
-	    success:function(respuesta){
+	    success:function(resultado){
 
-	    	if(respuesta){
-
-	    		//$("#matriculaModalidad").parent().after('<div class="alert alert-warning">Esta matricula ya exite</div>');
-          alert("Clase Matriculada");
-	    		$("#matriculaModalida").val("");
+        alert(resultado);
+	    	if(resultado){
+          //alert(resultado);
+          alert('El alumno ya se encuentra matriculado en esta seccion');
+	    		//$("#row").parent().after('<br><div class="alert alert-danger">El alumno ya se encuentra matriculado en esta seccion.</div>');
+          //alert("Clase ya fue Matriculada para este Alumno");
+	    		//$("#matriculaModalidad").val("");
+          //$("#adicionar1").val("");
+          //$("#adicionar2").val("");
+          //$("#adicionar3").val("");
 
 	    	}
 

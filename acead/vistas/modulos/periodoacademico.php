@@ -43,9 +43,11 @@
 
                    <tr>
 
-                     <th style="width:10px">Id</th>
-                     <th>Parametro</th>
-                     <th>Valor</th>
+
+                     <th>Descripcion</th>
+                     <th>Fecha de Inicio</th>
+                     <th>Fecha Final</th>
+                     <th>Estado</th>
                      <th>Acciones</th>
 
 
@@ -61,21 +63,22 @@
 
                       $item = null;
                       $valor = null;
-                      $modalidades = ControladorConfiguracion::ctrMostrarConfig($item, $valor);
+                      $modalidades = ControladorPeriodoAcm::ctrMostrarOeriodoAcm($item, $valor);
 
                      foreach ($modalidades as $key => $value){
 
                         echo ' <tr>
 
-                                <td>'.$value["Id_Parametro"].'</td>
-                                <td>'.$value["Parametro"].'</td>
-                                <td>'.$value["Valor"].'</td>
+                                <td>'.$value["DescripPeriodo"].'</td>
+                                <td>'.$value["FechaInicio"].'</td>
+                                <td>'.$value["FechaFin"].'</td>
+                                <td>'.$value["Activo"].'</td>
 
                                 <td>
 
                                   <div class="btn-group">
 
-                                    <button class="btn btn-warning btnEditarParametro" idParametro="'.$value["Id_Parametro"].'" data-toggle="modal" data-target="#modalEditarParametro"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-warning btnEditarParametro" idPeriodo="'.$value["Id_PeriodoAcm"].'" data-toggle="modal" data-target="#modalEditarParametro"><i class="fa fa-pencil"></i></button>
 
 
 

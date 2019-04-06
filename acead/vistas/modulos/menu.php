@@ -125,6 +125,17 @@
 
 					</li>
 
+					<li>
+
+						<a href="periodoacademico">
+
+							<i class="fa fa-circle-o"></i>
+							<span>Periodo Academico</span>
+
+						</a>
+
+					</li>
+
 				</ul>
 
 			</li>

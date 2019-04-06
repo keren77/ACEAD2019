@@ -8,7 +8,7 @@ class ModeloMatricula{
 	MOSTRAR MATRÍCULA
 	=============================================*/
 
-	static public function MdlMostrarMatricula($tabla, $item, $valor){
+	static public function MdlMostrarMatricula1($tabla, $item, $valor){
 
 
 		if($item != null){
@@ -31,6 +31,43 @@ class ModeloMatricula{
 
 		}
 
+
+		$stmt -> Cerrar_Conexion();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	MOSTRAR MATRICULA EN LA PANTALLA DE GESTION
+	=============================================*/
+
+	static public function MdlMostrarMatricula($tabla){
+
+			$stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT MA.Id_Matricula as IDMAT,
+																										CONCAT(ALU.PrimerNombre,' ',ALU.PrimerApellido) AS Alum,
+																										MODA.DescripModalidad as DMOD,
+																										ORI.Nombre AS DORI,
+																										CLAS.DescripClase AS DCLASE,
+																										SEC.DescripSeccion AS DSEC,
+																										PER.DescripPeriodo AS DPER
+																										FROM tbl_matricula MA,
+																										tbl_alumnos ALU,
+																										tbl_modalidades MODA,
+																										tbl_orientacion ORI,
+																										tbl_clases CLAS,
+																										tbl_secciones SEC,
+																										tbl_periodoacademico PER
+																										WHERE(ALU.Id_Alumno=MA.Id_Alumno)
+																										AND (MODA.Id_Modalidad=MA.Id_Modalidad)
+																										AND (ORI.Id_orientacion=MA.Id_Orientacion)
+																										AND (CLAS.Id_Clase=MA.Id_Clase)
+																										AND (SEC.Id_Seccion=MA.Id_Seccion)
+																										AND(PER.Id_PeriodoAcm=MA.Id_PeriodoAcm)");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
 
 		$stmt -> Cerrar_Conexion();
 
@@ -107,15 +144,66 @@ class ModeloMatricula{
   =============================================*/
   static public function mdlCompMatricula($tabla, $alumno, $mod, $ori, $clas, $per){
 
-    $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT * FROM $tabla WHERE Id_Alumno = $alumno and Id_Modalidad = $mod and Id_Orientacion = $ori and Id_Clase = $clas and Id_PeriodoAcm = $per");
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT Id_Matricula FROM tbl_matricula
+																									WHERE Id_Alumno = $alumno
+																									AND Id_Modalidad = $mod
+																									AND Id_Orientacion = $ori
+																									AND Id_Clase = $clas
+																									AND Id_Seccion = $sec
+																									AND Id_PeriodoAcm = $per");
   	$stmt -> execute();
 
-  	return $stmt -> fetchall();
+		if($stmt->execute()){
+
+  	return $stmt -> fetch();
+
+		}else{
+
+			echo "<script type='text/javascript'>alert('error sql')</script>";
 
     }
 
 
-
+	}
 
 
 }
+
+
+
+	$funcion = filter_input(INPUT_GET, 'caso');
+
+	switch ($funcion){
+
+	    case 'verificarmatricula':
+	  	metodo_verificarmatricula();
+	    break;
+	}
+
+	function metodo_verificarmatricula(){
+	    $alumno = 'Id_Alumno';
+			$mod = 'Id_Modalidad';
+			$ori = 'Id_Orientacion';
+			$clas = 'Id_Clase';
+			$sec = 'Id_Seccion';
+			$per = 'Id_PeriodoAcm';
+			$tabla = "tbl_matricula";
+
+			//echo "<script type='text/javascript'>alert('$alumno');</script>";
+
+	    $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT Id_Matricula FROM tbl_matricula
+																										WHERE Id_Alumno = $alumno
+																										AND Id_Modalidad = $mod
+																										AND Id_Orientacion = $ori
+																										AND Id_Clase = $clas
+																										AND Id_Seccion = $sec
+																										AND Id_PeriodoAcm = $per");
+
+			$stmt->execute();
+
+		 	$resultado = $stmt->fetch();
+
+	    echo json_encode($resultado);
+
+
+	}

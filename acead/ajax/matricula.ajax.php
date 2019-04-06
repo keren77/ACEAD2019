@@ -2,52 +2,25 @@
 
 require_once "../controladores/matricula.controlador.php";
 require_once "../modelos/matricula.modelo.php";
+echo "<script type='text/javascript'>alert('ajax de m...')</script>";
 
-
-
-if (isset($_GET["id"])) {
-
-    $editar = new AjaxMatricula();
-    $editar->id = $_GET["id"];
-    $editar->ajaxOrientaciones();
-}
 
 /*=============================================
 VALIDAR NO REPETIR MATRICULA
 =============================================*/
 
-if(isset( $_POST["IdAlumno"])){
+if(isset( $_POST["Id_Alumno"])){
 
  $validarMatricula = new AjaxMatricula();
- $validarMatricula -> $validarMatricula = $_POST["IdAlumno"];
+ $validarMatricula -> validarMatricula = $_POST["Id_Alumno"];
  $validarMatricula -> ajaxValidarMatricula();
 
 }
 
+
+
 class AjaxMatricula{
 
- public $id;
-
- public function ajaxOrientaciones(){
-
-	 $tabla = "tbl_orientacion";
-	 $valor = $this->id;
-
-	 $respuesta = ModeloMatricula::mdlCargarOrientacion($tabla, $valor);
-
-		$con = array();
- 		$n=0;
-
- 	while($row = $respuesta->fetch_row()){
- 		$con[$n]['Id_Orientacion']= $row[0];
- 		$con[$n]['Orientacion']=$row[1];
- 		$n++;
-
- 	}
-
- 	echo json_encode($con, JSON_UNESCAPED_UNICODE);
-
-  }
 
  /*=============================================
  VALIDAR NO REPETIR USUARIO
@@ -57,15 +30,16 @@ class AjaxMatricula{
 
  public function ajaxValidarMatricula(){
 
-   $alumno = "IdAlumno";
+   $alumno = "Id_Alumno";
    $mod = "Id_Modalidad";
    $ori = "Id_Orientacion";
    $clas = "Id_Clase";
-   $per = "Id_PeriodoAcm"
+   $per = "Id_PeriodoAcm";
+   $tabla = "tbl_matricula";
 
    $valor = $this->validarMatricula;
 
-   $respuesta = ControladorUsuarios::ctrMostrarUsuarios($alumno, $mod, $ori, $clas, $per);
+   $respuesta = ControladorMatricula::ctrCompMatricula($alumno, $mod, $ori, $clas, $per);
 
    echo json_encode($respuesta);
 
