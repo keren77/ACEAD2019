@@ -4,7 +4,7 @@
 
     <h1>
 
-      Gestión Acadadémica
+      Gestión Académica
 
     </h1>
 
@@ -70,6 +70,8 @@
                   echo '  <td>
 
                      <div class="btn-group">
+
+                     <button class="btn btn-danger btnEliminarMatricula" idMatricula="'.$value["IDMAT"].'"><i class="fa fa-times"></i></button>
 
                      </div>
 

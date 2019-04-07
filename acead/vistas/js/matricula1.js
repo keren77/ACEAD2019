@@ -97,49 +97,79 @@ REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
 
 $("#adicionar3").change(function(){
 //alert("Clase Matriculada");
-	alumno = $('#IdAlumno').val();
-  modalidad = $('#matriculaModalidad').val();
-  orientacion = $('#adicionar1').val();
-  clase = $('#adicionar2').val();
-  secc = $('#adicionar3').val();
-  periodo = $('1').val();
-  //alert(modalidad);
-  var datos = {
-      "Id_Alumno": alumno,
-      "Id_Modalidad": modalidad,
-      "Id_Orientacion": orientacion,
-      "Id_Clase": clase,
-      "Id_Seccion": secc,
-      "Id_PeriodoAcm": periodo
-    };
-    //alert(datos["Id_Alumno"]);
+    alumno = $('#IdAlumno').val();
+    modalidad = $('#matriculaModalidad').val();
+    orientacion = $('#adicionar1').val();
+    clase = $('#adicionar2').val();
+    secc = $('#adicionar3').val();
+
+    var datos = {
+        "Id_Alumno": alumno,
+        "Id_Modalidad": modalidad,
+        "Id_Orientacion": orientacion,
+        "Id_Clase": clase,
+        "Id_Seccion": secc
+      };
 
    $.ajax({
 
-	    url:"../acead/modelos/matricula.modelo.php?caso=verificarmatricula",
-      //url:"ajax/matricula.ajax.php",
-      method:"POST",
-	    data: datos,
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    dataType: "json",
-	    success:function(resultado){
+        url:"../acead/modelos/matricula.modelo.php?caso=verificarmatricula",
+        data: datos,
+        type:"post",
+        dataType: 'json',
+        success:function(data){
+            //alert(data);
+            //Aqui se filtra lo que se quiera hacer si recibe 1 permite matricular, si recibe 0 no permite la matricula
+            if(data === 1 || data === '1'){
+                //Codigo para mandar a matricular
+            }else{
+                //Codigo para evitar la matricula
+                alert('El Alumno ya se encuentra matriculado en esa seccion.');
+                $("#matriculaModalidad").val("");
+                $("#adicionar1").empty();
+                $("#adicionar2").empty();
+                $("#adicionar3").empty();
 
-        alert(resultado);
-	    	if(resultado){
-          //alert(resultado);
-          alert('El alumno ya se encuentra matriculado en esta seccion');
-	    		//$("#row").parent().after('<br><div class="alert alert-danger">El alumno ya se encuentra matriculado en esta seccion.</div>');
-          //alert("Clase ya fue Matriculada para este Alumno");
-	    		//$("#matriculaModalidad").val("");
-          //$("#adicionar1").val("");
-          //$("#adicionar2").val("");
-          //$("#adicionar3").val("");
+            }
+        },
+        error:function(xhr, status){
+            alert("¡Algo salió mal! : " + xhr + "(" + status + ")");
+        }
 
-	    	}
+    });
+});
 
-	    }
+function envia_matricula(){
 
-	})
+}
+
+/*=============================================
+ELIMINAR MATRICULA
+=============================================*/
+$(".tablas").on("click", ".btnEliminarMatricula", function(){
+
+  var idMatricula = $(this).attr("idMatricula");
+
+
+  swal({
+    title: '¿Está seguro de borrar la matricula?',
+    text: "¡Si no lo está puede cancelar la accíón!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, borrar matricula!'
+  }).then((result)=>{
+
+    if(result.value){
+
+
+      window.location = "index.php?ruta=gestionacademica&idMatricula="+idMatricula;
+
+
+    }
+
+  })
+
 })

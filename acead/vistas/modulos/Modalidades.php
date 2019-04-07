@@ -775,6 +775,9 @@ MODAL AGREGAR CLASE
       $crearClaseOrientaModali = new ControladorClases();
       $crearClaseOrientaModali -> ctrCrearClaseOrientaModali();
 
+      $crearClaseOrientacion = new ControladorClases();
+      $crearClaseOrientacion -> ctrCrearClaseOrientacion();
+
 
     ?>
 

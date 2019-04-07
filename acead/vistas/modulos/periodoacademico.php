@@ -4,7 +4,7 @@
 
     <h1>
 
-      Administrar Configuracion
+      Administrar Periodos Academicos
 
     </h1>
 
@@ -26,9 +26,9 @@
       <!-- BOTON AGREGAE USUARIO -->
         <div class="box-header with-border">
 
-              <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarParametro"><i class="fa fa-plus"></i>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPeriodo"><i class="fa fa-plus"></i>
 
-                Agregar Parametro
+                Agregar Periodo Academico
 
               </button>
 
@@ -43,7 +43,7 @@
 
                    <tr>
 
-
+                     <th>Id</th>
                      <th>Descripcion</th>
                      <th>Fecha de Inicio</th>
                      <th>Fecha Final</th>
@@ -63,12 +63,12 @@
 
                       $item = null;
                       $valor = null;
-                      $modalidades = ControladorPeriodoAcm::ctrMostrarOeriodoAcm($item, $valor);
+                      $modalidades = ControladorPeriodoAcm::ctrMostrarPeriodoAcm($item, $valor);
 
                      foreach ($modalidades as $key => $value){
 
                         echo ' <tr>
-
+                                <td>'.$value["Id_PeriodoAcm"].'</td>
                                 <td>'.$value["DescripPeriodo"].'</td>
                                 <td>'.$value["FechaInicio"].'</td>
                                 <td>'.$value["FechaFin"].'</td>
@@ -78,7 +78,7 @@
 
                                   <div class="btn-group">
 
-                                    <button class="btn btn-warning btnEditarParametro" idPeriodo="'.$value["Id_PeriodoAcm"].'" data-toggle="modal" data-target="#modalEditarParametro"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-warning btnEditarPeriodo" idPeriodo="'.$value["Id_PeriodoAcm"].'" data-toggle="modal" data-target="#modalEditarPeriodo"><i class="fa fa-pencil"></i></button>
 
 
 
@@ -114,7 +114,7 @@
 MODAL AGREGAR USUARIO
 ======================================-->
 
-<div id="modalAgregarParametro" class="modal fade" role="dialog">
+<div id="modalAgregarPeriodo" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
 
@@ -130,7 +130,7 @@ MODAL AGREGAR USUARIO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Nuevo Parametro</h4>
+          <h4 class="modal-title">Agregar Nuevo Periodo Academico</h4>
 
         </div>
 
@@ -142,34 +142,81 @@ MODAL AGREGAR USUARIO
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL NOMBRE DEL PARAMETRO -->
+            <!-- ENTRADA PARA EL NOMBRE DEL PERIODO ACADEMICO -->
 
             <div class="form-group">
+              <label>Nombre Periodo Academico</label>
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-cog"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoParametro" id="nuevoParametro" placeholder="Nombre del Parametro"  style="text-transform: uppercase" maxlength="30" required>
+                <input type="text" class="form-control input-lg" name="nuevoPeriodo" id="nuevoPeriodo" placeholder="PERIODO ACADEMICO"  style="text-transform: uppercase" maxlength="30" required>
 
               </div>
 
             </div>
 
 
-          <!-- ENTRADA PARA EL VALOR DEL PARAMETRO -->
+          <!-- ENTRADA PARA EL VALOR DE LA FECHA INICIAL -->
 
           <div class="form-group">
+            <label>Fecha Inicial:</label>
 
-            <div class="input-group">
+            <div class="input-group date">
 
-                <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoVal" id="nuevoVal" placeholder="Valor del Parametro" maxlength="100">
+              <input type="text" class="form-control pull-right" data-date-format='yyyy-mm-dd' placeholder="DD-MM-YYYY" name="FechaInicial" id="datepicker">
+            </div>
+
+          </div>
+
+
+          <!-- ENTRADA PARA EL VALOR DE LA FECHA FINAL -->
+
+          <div class="form-group">
+            <label>Fecha Final:</label>
+
+            <div class="input-group date">
+
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+              <input type="text" class="form-control pull-right" placeholder="DD-MM-YYYY" data-date-format='yyyy-mm-dd' name="FechaFinal" id="datepicker2">
+            </div>
+            <!-- /.input group -->
+          </div>
+
+          <!-- ENTRADA PARA EL ESTADO -->
+
+          <div class="form-group">
+            <label>Estado:</label>
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+
+                <select class="form-control input-lg" name="estadoperiodo" id="estadoperiodo">
+
+                  <option value="">Seleccionar Estado</option>
+
+                  <?php
+
+                  $dpto = ControladorPeriodoAcm::ctrCargarSelectEstado();
+                  foreach ($dpto as $key => $value) {
+                    echo "<option value='".$value['Activo']."'>".$value['Activo']."</option>";
+                  }
+                  ?>
+
+                </select>
 
               </div>
 
-          </div>
+            </div>
+
+            </div>
 
           </div>
 
@@ -188,8 +235,8 @@ MODAL AGREGAR USUARIO
 
         <?php
 
-          $crearUsuario = new ControladorConfiguracion();
-          $crearUsuario -> ctrCrearParametro();
+          $crearUsuario = new ControladorPeriodoAcm();
+          $crearUsuario -> ctrCrearPeriodoAcm();
 
         ?>
         <script src="vistas/js/ctrespacios.js"></script>
@@ -203,10 +250,10 @@ MODAL AGREGAR USUARIO
 </div>
 
 <!--=====================================
-MODAL EDITAR PARAMETRO
+MODAL EDITAR PERIODO
 ======================================-->
 
-<div id="modalEditarParametro" class="modal fade" role="dialog">
+<div id="modalEditarPeriodo" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
 
@@ -222,7 +269,7 @@ MODAL EDITAR PARAMETRO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Parametro</h4>
+          <h4 class="modal-title">Editar Periodo Academico</h4>
 
         </div>
 
@@ -234,34 +281,83 @@ MODAL EDITAR PARAMETRO
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL NOMBRE DEL PARAMETRO -->
+            <!-- ENTRADA PARA EL NOMBRE DEL PERIODO ACADEMICO -->
 
             <div class="form-group">
+              <label>Nombre Periodo Academico</label>
 
               <div class="input-group">
 
                 <span class="input-group-addon"><i class="fa fa-cog"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarParametro" id="editarParametro" placeholder="Nombre del Parametro" style="text-transform: uppercase" maxlength="30" required>
+                <input type="text" class="form-control input-lg" name="editarPeriodo" id="editarPeriodo" placeholder="PERIODO ACADEMICO"  style="text-transform: uppercase" maxlength="30" required>
 
               </div>
 
             </div>
 
 
-          <!-- ENTRADA PARA EL VALOR DEL PARAMETRO -->
+          <!-- ENTRADA PARA EL VALOR DE LA FECHA INICIAL -->
 
           <div class="form-group">
+            <label>Fecha Inicial:</label>
 
-            <div class="input-group">
+            <div class="input-group date">
 
-                <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                <input type="text" class="form-control input-lg" name="editarVal" id="editarVal" placeholder="Valor del Parametro" maxlength="15">
+              <input type="text" class="form-control pull-right" placeholder="DD-MM-YYYY" data-date-format='yyyy-mm-dd' name="editarFechaInicial" id="editardatepicker">
+            </div>
+
+          </div>
+
+
+          <!-- ENTRADA PARA EL VALOR DE LA FECHA FINAL -->
+
+          <div class="form-group">
+            <label>Fecha Final:</label>
+
+            <div class="input-group date">
+
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+              <input type="text" class="form-control pull-right" placeholder="DD-MM-YYYY" data-date-format='yyyy-mm-dd' name="editarFechaFinal" id="editardatepicker2">
+            </div>
+            <!-- /.input group -->
+          </div>
+
+          <!-- ENTRADA PARA EL ESTADO -->
+
+          <div class="form-group">
+            <label>Estado:</label>
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+
+                <select class="form-control input-lg" name="editarestadoperiodo" id="editarestadoperiodo">
+
+                  <option value="">Seleccionar Estado</option>
+                  <option value="0">INACTIVO</option>
+                  <option value="1">ACTIVO</option>
+
+                  <?php
+                  /*
+                  $dpto = ControladorPeriodoAcm::ctrCargarSelectEstado();
+                  foreach ($dpto as $key => $value) {
+                    echo "<option value='".$value['Activo']."'>".$value['Activo']."</option>";
+                  }*/
+                  ?>
+
+                </select>
 
               </div>
 
-          </div>
+            </div>
+
+            </div>
 
           </div>
 
@@ -274,14 +370,14 @@ MODAL EDITAR PARAMETRO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Parametro</button>
+          <button type="submit" class="btn btn-primary">Guardar Periodo</button>
 
         </div>
 
         <?php
 
-          $crearUsuario = new ControladorConfiguracion();
-          $crearUsuario -> ctrEditarParametro();
+          $crearUsuario = new ControladorPeriodoAcm();
+          $crearUsuario -> ctrEditarPeriodoAcm();
 
         ?>
         <script src="vistas/js/ctrespacios.js"></script>

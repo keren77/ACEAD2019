@@ -104,6 +104,21 @@ class ModeloMatricula{
 
 		 }
 
+		 /*=============================================
+		 SELECCIONAR PERIODO VIGENTE
+		 =============================================*/
+
+		 static public function mdlPeriodoVigente(){
+
+		 $stmtA = ConexionBD::Abrir_Conexion()->prepare("SELECT PA.id_periodoacm AS IDP FROM tbl_periodoacademico PA WHERE NOW() >= FechaInicio AND NOW() <= FechaFin;");
+     $stmtA->execute();
+     $resultadoA = $stmtA->fetchAll(PDO::FETCH_BOTH);
+     $idPeriodoActual = $resultadoA[0]['IDP'];
+
+		 return $idPeriodoActual;
+
+	 }
+
 	 /*=============================================
  	 MATRICULAR ALUMNO
  	 =============================================*/
@@ -166,44 +181,107 @@ class ModeloMatricula{
 
 	}
 
+	/*=============================================
+	BORRAR MATRICULA
+	=============================================*/
+
+	static public function mdlBorrarMatricula($tabla, $datos){
+
+		echo "<script type='text/javascript'>alert('sql')</script>";
+
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("DELETE FROM $tabla WHERE Id_Matricula = :id");
+
+    $stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+
+
+		if($stmt -> execute() ){
+
+			return "ok";
+
+
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+
+	}
+
 
 }
 
 
 
-	$funcion = filter_input(INPUT_GET, 'caso');
+$funcion = filter_input(INPUT_GET, 'caso');
 
-	switch ($funcion){
+switch ($funcion){
 
-	    case 'verificarmatricula':
-	  	metodo_verificarmatricula();
-	    break;
-	}
+    case 'verificarmatricula':
+        metodo_verificarmatricula();
+    break;
+}
 
-	function metodo_verificarmatricula(){
-	    $alumno = 'Id_Alumno';
-			$mod = 'Id_Modalidad';
-			$ori = 'Id_Orientacion';
-			$clas = 'Id_Clase';
-			$sec = 'Id_Seccion';
-			$per = 'Id_PeriodoAcm';
-			$tabla = "tbl_matricula";
+function metodo_verificarmatricula(){
 
-			//echo "<script type='text/javascript'>alert('$alumno');</script>";
+    //Recibiendo los parametros del ajax
+    $alumno = filter_input(INPUT_POST, 'Id_Alumno');
+    $mod = filter_input(INPUT_POST, 'Id_Modalidad');
+    $ori = filter_input(INPUT_POST, 'Id_Orientacion');
+    $clas = filter_input(INPUT_POST, 'Id_Clase');
+    $sec = filter_input(INPUT_POST, 'Id_Seccion');
+    //$per = filter_input(INPUT_POST, 'Id_PeriodoAcm');
+    $tabla = "tbl_matricula";
 
-	    $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT Id_Matricula FROM tbl_matricula
-																										WHERE Id_Alumno = $alumno
-																										AND Id_Modalidad = $mod
-																										AND Id_Orientacion = $ori
-																										AND Id_Clase = $clas
-																										AND Id_Seccion = $sec
-																										AND Id_PeriodoAcm = $per");
+    //Obtener el ID del periodo actual para evaluar que no este matriculado en este periodo
+    $stmtA = ConexionBD::Abrir_Conexion()->prepare("SELECT PA.id_periodoacm AS IDP FROM tbl_periodoacademico PA WHERE NOW() >= FechaInicio AND NOW() <= FechaFin;");
+    $stmtA->execute();
+    $resultadoA = $stmtA->fetchAll(PDO::FETCH_BOTH);
+    $idPeriodoActual = $resultadoA[0]['IDP'];
 
-			$stmt->execute();
+    //Query que valida si el alumno ya está matriculado según el resto de parámetros
+    $stmtB = ConexionBD::Abrir_Conexion()->prepare("SELECT COUNT(*) AS cantidad FROM tbl_matricula TM INNER JOIN tbl_periodoacademico TPA ON TM.id_periodoacm=TPA.id_periodoacm WHERE TM.id_alumno = ".$alumno." AND TM.id_modalidad = ".$mod." AND TM.id_orientacion = ".$ori." AND TM.id_clase = ".$clas." AND TM.id_seccion= ".$sec." AND TM.id_periodoacm = ".$idPeriodoActual.";");
+    $stmtB->execute();
+    $resultadoB = $stmtB->fetchAll(PDO::FETCH_BOTH);
+    $cantidadResult = $resultadoB[0]['cantidad'];
 
-		 	$resultado = $stmt->fetch();
+    if($cantidadResult > 0){
+        //No lo puede matricular
+        echo json_encode('0');
+    }else{
+        //Si lo puede matricular
+        echo json_encode('1');
+    }
 
-	    echo json_encode($resultado);
+//	    $alumno = 'Id_Alumno';
+//			$mod = 'Id_Modalidad';
+//			$ori = 'Id_Orientacion';
+//			$clas = 'Id_Clase';
+//			$sec = 'Id_Seccion';
+//			$per = 'Id_PeriodoAcm';
+//			$tabla = "tbl_matricula";
+
+                //echo "<script type='text/javascript'>alert('$alumno');</script>";
+
+//	    $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT Id_Matricula FROM tbl_matricula
+//                                                                                                    WHERE Id_Alumno = $alumno
+//                                                                                                    AND Id_Modalidad = $mod
+//                                                                                                    AND Id_Orientacion = $ori
+//                                                                                                    AND Id_Clase = $clas
+//                                                                                                    AND Id_Seccion = $sec
+//                                                                                                    AND Id_PeriodoAcm = $per");
+
+                //$stmt->execute();
+
+                //$resultado = $stmt->fetch();
+
+    //echo json_encode($resultado);
+                //echo json_encode($idPeriodoActual);
 
 
-	}
+}

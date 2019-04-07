@@ -88,8 +88,6 @@
 
                     <button class="btn btn-warning btnEditarAlumno" idAlumno="'.$value["Id_Alumno"].'" data-toggle="modal" data-target="#modalEditarAlumno"><i class="fa fa-pencil"></i></button>
 
-                    <button class="btn btn-info btnContactoResponsable" idAlumno="'.$value["Id_Alumno"].'" data-toggle="modal" data-target="#modalContactoResponsable"><i class="fa fa-envelope"></i></button>
-
                     <button class="btn btn-danger btnEliminarAlumno" idAlumno="'.$value["Id_Alumno"].'"><i class="fa fa-times"></i></button>
 
 
@@ -163,15 +161,15 @@ MODAL AGREGAR ALUMNO
 
             </div>
 
-            <!-- ENTRADA PARA EL PRIMER NOMBRE -->
+            <!-- ENTRADA PARA EL SEGUNDO NOMBRE -->
 
             <div class="form-group">
 
               <div class="input-group">
 
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoNombre1" id="nuevoNombre1" placeholder="Primer Nombre" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" required>
+                  <input type="text" class="form-control input-lg" name="nuevoNombre2" placeholder="Segundo Nombre" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase">
 
               </div>
 
@@ -359,7 +357,6 @@ MODAL AGREGAR ALUMNO
 
         </div>
 
-
         <!--=====================================
         PIE DEL MODAL
         ======================================-->
@@ -384,11 +381,10 @@ MODAL AGREGAR ALUMNO
 
     </div>
 
-   </div>
-
   </div>
 
 </div>
+
 
 
 <?php
@@ -630,140 +626,6 @@ MODAL EDITAR ALUMNO
 
 </div>
 
-<!--=====================================
-MODAL CONTACTO RESPONSABLE
-======================================-->
-
-<div id="modalContactoResponsable" class="modal fade" role="dialog">
-
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <form role="form" method="post" enctype="multipart/form-data">
-
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#00c0ef; color:white">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Agregar Contacto Responsable</h4>
-
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL ID ALUMNO -->
-
-            <div class="form-group">
-
-               <div class="input-group">
-
-                 <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
-
-                   <input type="text" class="form-control input-lg" id="editarAlumno" name="editarAlumno" readonly value="">
-
-
-               </div>
-
-             </div>
-
-             <!-- ENTRADA PARA EL PRIMER NOMBRE -->
-
-             <div class="form-group">
-
-               <div class="input-group">
-
-                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-
-                 <input type="text" class="form-control input-lg" name="nuevoNombre1" id="nuevoNombre1" placeholder="Primer Nombre" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" required>
-
-               </div>
-
-             </div>
-
-            <!-- ENTRADA PARA EL PRIMER APELLIDO -->
-
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevoApellido1" placeholder="Primer Apellido" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA EL TIPO DE CONTACTO-->
-
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-male"></i></span>
-
-                <input type="text" class="form-control input-lg" name="nuevoContacto1" placeholder="Tipo de Contacto" pattern="|^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]*$|" style="text-transform: uppercase">
-
-              </div>
-
-            </div>
-
-
-            <!-- ENTRADA PARA EL TELEFONO -->
-
-            <div class="form-group">
-
-                  <div class="input-group">
-
-                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-
-                    <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="TELÉFONO" minlength="8" maxlength="15" pattern="[0-9]{8}">
-
-                  </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar Contacto</button>
-
-        </div>
-
-        <?php
-
-          $crearContactoRespon = new ControladorContactoRespon();
-          $crearContactoRespon -> ctrCrearContactoRespon();
-
-        ?>
-
-      </form>
-
-    </div>
-
-  </div>
-
-</div>
 
 <?php
 

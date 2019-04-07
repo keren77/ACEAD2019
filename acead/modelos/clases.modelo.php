@@ -65,12 +65,48 @@ class ModeloClases{
 
   }
 
+  /*=============================================
+  REGISTRO DE ORIENTACION Y CLASE
+  =============================================*/
+
+  static public function mdlIngresarClaseOrientacion($tabla, $datos){
+
+    $stmtA = ConexionBD::Abrir_Conexion()->prepare("SELECT MAX(CLA.id_clase) AS IDCLASE FROM tbl_clases CLA");
+    $stmtA->execute();
+    $resultadoA = $stmtA->fetchAll(PDO::FETCH_BOTH);
+    $idult = $resultadoA[0]['IDCLASE'];
+    //echo "<script type='text/javascript'>alert('$idult')</script>";
+    //$idultclase = $idultclase++;
+
+    $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (Id_Orientacion, Id_Clases)
+                                                  VALUES (:idorientacion, :idclase)");
+
+    $stmt->bindParam(":idorientacion", $datos["Id_Orientacion"], PDO::PARAM_STR);
+    $stmt->bindParam(":idclase", $idult, PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+      return "ok";
+
+    }else{
+
+      return "error";
+
+    }
+
+    $stmt->close();
+
+    $stmt = null;
+
+  }
+
 
   /*=============================================
   REGISTRO DE CLASES
   =============================================*/
 
   static public function mdlIngresarClases($tabla, $datos){
+  //echo "<script type='text/javascript'>alert('neles')</script>";
 
     $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla (DescripClase, Duracion)
                                                   VALUES (:descripclase, :duracion)");

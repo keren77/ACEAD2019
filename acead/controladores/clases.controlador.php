@@ -38,6 +38,38 @@ class ControladorClases{
 
   }
 
+  /*=============================================
+  REGISTRO DE LA MODALIDAD DE LA CLASE Y LA ORIENTACIÓN DE LA CLASE
+  =============================================*/
+
+  static public function ctrCrearClaseOrientacion(){
+
+    if(isset($_POST["nuevoDescripClase"])){
+
+      if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoDescripClase"])){
+
+        $tabla = "tbl_orientacion_clase";
+
+
+        $datos = array("Id_Orientacion" => $_POST["nuevoSelecOrientacion"]);
+
+
+        $respuesta = ModeloClases::mdlIngresarClaseOrientacion($tabla, $datos);
+
+        if($respuesta == "ok"){
+          //echo "<script type='text/javascript'>alert('mod-clase')</script>";
+
+
+        }elseif($respuesta == "error"){
+          echo "<script type='text/javascript'>alert('error mod-clase')</script>";
+
+        }
+
+       }
+    }
+
+  }
+
 
   /*=============================================
 	REGISTRO DE CLASES

@@ -49,7 +49,9 @@ class ControladorMatricula{
           if(isset($_POST["adicionar3"])){
 
             $tabla = "tbl_matricula";
-            $periodo = "1";
+
+
+            $periodo = ModeloMatricula::mdlPeriodoVigente();
 
             $datos= array("Id_Alumno" => $_POST["IdAlumno"],
                           "Id_Modalidad" => $_POST["matriculaModalidad"],
@@ -78,7 +80,7 @@ class ControladorMatricula{
 
     						if(result.value){
 
-    							window.location = "alumnos";
+    							window.location = "gestionacademica";
 
     						}
 
@@ -130,7 +132,49 @@ static public function ctrCompMatricula($alumno, $mod, $ori, $clas, $per){
   return $respuesta;
 }
 
+/*=============================================
+BORRAR ALUMNO
+=============================================*/
 
+static public function ctrBorrarMatricula(){
+  echo "<script type='text/javascript'>alert('SUP')</script>";
+
+  if(isset($_GET["idMatricula"])){
+
+
+    $tabla = "tbl_matricula";
+    $datos = $_GET["idMatricula"];
+
+    $respuesta = ModeloMatricula::mdlBorrarMatricula($tabla, $datos);
+
+    if($respuesta == "ok"){
+
+      echo'<script>
+
+      swal({
+          type: "success",
+          title: "El Alumno ha sido borrado correctamente",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+          closeOnConfirm: false
+          }).then((result) => {
+              if (result.value) {
+
+              window.location = "alumnos";
+
+              }
+            })
+
+      </script>';
+
+    }else{
+       echo "<script type='text/javascript'>alert('ERROR EN SQL')</script>";
+
+    }
+
+  }
+
+}
 
 
 

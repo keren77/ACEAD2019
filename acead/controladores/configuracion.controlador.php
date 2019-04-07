@@ -54,7 +54,7 @@ class ControladorConfiguracion{
               }).then((result) => {
                   if (result.value) {
 
-                  window.location = "configuracio";
+                  window.location = "configuracion";
 
                   }
                 })

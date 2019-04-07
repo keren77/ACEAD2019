@@ -44,6 +44,9 @@ session_start();
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
 
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="vistas/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
@@ -68,6 +71,9 @@ session_start();
 
   <!-- SweetAlert 2 -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+  <!-- bootstrap datepicker -->
+  <script src="vistas/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 
 </head>
 
@@ -160,11 +166,12 @@ CUERPO DOCUMENTO
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/alumnos.js"></script>
 <script src="vistas/js/ctrespacios.js"></script>
-<script src="vistas/js/matricula.js"></script>
+<script src="vistas/js/matricula1.js"></script>
 <script src="vistas/js/modalidades.js"></script>
 <script src="vistas/js/configuracion.js"></script>
 <script src="vistas/js/orientaciones.js"></script>
-<script src="vistas/js/clases.js"></script>
+<script src="vistas/js/periodoacm.js"></script>
+<script src="vistas/js/gestionacademica.js"></script>
 
 
 </body>

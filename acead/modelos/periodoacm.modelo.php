@@ -13,6 +13,7 @@ class ModeloPeriodoAcm{
 
     if($item != null){
 
+
       $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
       $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
@@ -22,6 +23,8 @@ class ModeloPeriodoAcm{
       return $stmt -> fetch();
 
     }else{
+      //echo "<script type='text/javascript'>alert('wut')</script>";
+
 
       $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT * FROM $tabla");
 
@@ -42,15 +45,16 @@ class ModeloPeriodoAcm{
     EDITAR USUARIO
     ============================================= */
 
-  static public function mdlEditarParametro($tabla, $datos) {
+  static public function mdlEditarPeriodo($tabla, $datos) {
+    //echo "<script type='text/javascript'>alert('modelo')</script>";
 
+      $stmt = ConexionBD::Abrir_Conexion()->prepare("UPDATE $tabla SET DescripPeriodo = :periodo, FechaInicio = :fechainicio, FechaFin = :fechafin, Activo = :estado
+                                                              WHERE DescripPeriodo = :periodo");
 
-      $stmt = ConexionBD::Abrir_Conexion()->prepare("UPDATE $tabla SET Parametro = :parametro, Valor = :valor, FechaModificacion = :fecha
-                                                              WHERE Parametro = :parametro");
-
-      $stmt->bindParam(":parametro", $datos["Parametro"], PDO::PARAM_STR);
-      $stmt->bindParam(":valor", $datos["Valor"], PDO::PARAM_STR);
-      $stmt->bindParam(":fecha", $datos["FechaModificacion"], PDO::PARAM_STR);
+      $stmt->bindParam(":periodo", $datos["DescripPeriodo"], PDO::PARAM_STR);
+      $stmt->bindParam(":fechainicio", $datos["FechaInicio"], PDO::PARAM_STR);
+      $stmt->bindParam(":fechafin", $datos["FechaFin"], PDO::PARAM_STR);
+      $stmt->bindParam(":estado", $datos["Activo"], PDO::PARAM_STR);
 
 
       if ($stmt->execute()) {
@@ -71,17 +75,17 @@ class ModeloPeriodoAcm{
     REGISTRO DE PARAMETRO
     ============================================= */
 
-  static public function mdlIngresarParametro($tabla, $datos) {
+  static public function mdlIngresarPeriodo($tabla, $datos) {
       //echo "<script type='text/javascript'>alert('sql script')</script>";
 
-      $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla(Parametro,  Valor, FechaCreacion, Id_usuario)
-                                                VALUES (:parametro, :valor, :fecha, :usuario)");
+      $stmt = ConexionBD::Abrir_Conexion()->prepare("INSERT INTO $tabla(DescripPeriodo, FechaInicio, FechaFin, Activo)
+                                                VALUES (:periodo, :fechaini, :fechafin, :estado)");
 
 
-      $stmt->bindParam(":parametro", $datos["Parametro"], PDO::PARAM_STR);
-      $stmt->bindParam(":valor", $datos["Valor"], PDO::PARAM_STR);
-      $stmt->bindParam(":fecha", $datos["FechaCreacion"], PDO::PARAM_STR);
-      $stmt->bindParam(":usuario", $datos["Id_usuario"], PDO::PARAM_STR);
+      $stmt->bindParam(":periodo", $datos["DescripPeriodo"], PDO::PARAM_STR);
+      $stmt->bindParam(":fechaini", $datos["FechaInicio"], PDO::PARAM_STR);
+      $stmt->bindParam(":fechafin", $datos["FechaFin"], PDO::PARAM_STR);
+      $stmt->bindParam(":estado", $datos["Activo"], PDO::PARAM_STR);
 
       if ($stmt->execute()) {
 
@@ -96,7 +100,16 @@ class ModeloPeriodoAcm{
       $stmt = null;
   }
 
+  /* =============================================
+    CARGAR SELECT
+    ============================================= */
+    static public function mdlCargarSelect($tabla) {
 
+        $stmt = ConexionBD::Abrir_Conexion()->prepare("SELECT Activo FROM $tabla");
+        $stmt->execute();
+
+        return $stmt->fetchall();
+    }
 
 
 

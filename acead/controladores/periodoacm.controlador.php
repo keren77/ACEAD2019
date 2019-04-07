@@ -3,43 +3,36 @@
 class ControladorPeriodoAcm{
 
   /*=============================================
-  MOSTRAR PARAMETROS
+  MOSTRAR PERIODO
   =============================================*/
 
-  static public function ctrMostrarOeriodoAcm($item, $valor){
+  static public function ctrMostrarPeriodoAcm($item, $valor){
 
     $tabla = "tbl_periodoacademico";
-
+    //echo "<script type='text/javascript'>alert('$valor')</script>";
     $respuesta = ModeloPeriodoAcm::MdlMostrarPer($tabla, $item, $valor);
 
     return $respuesta;
   }
 
   /*=============================================
-  EDITAR PARAMETROS
+  EDITAR PERIODO
   =============================================*/
 
-  static public function ctrEditarParametro(){
+  static public function ctrEditarPeriodoAcm(){
 
 
-    if(isset($_POST["editarParametro"])){
+    if(isset($_POST["editarPeriodo"])){
+echo "<script type='text/javascript'>alert('control')</script>";
+      $tabla = "tbl_periodoacademico";
 
-      $tabla = "tbl_parametros";
-
-      date_default_timezone_set('America/Tegucigalpa');
-
-        $fecha = date('Y-m-d');
-        $hora = date('H:i:s');
-
-        $fechaActual = $fecha.' '.$hora;
+              $datos = array("DescripPeriodo" => $_POST["editarPeriodo"],
+                       "FechaInicio" => $_POST["editarFechaInicial"],
+                       "FechaFin" => $_POST["editarFechaFinal"],
+                       "Activo" => $_POST["editarestadoperiodo"]);
 
 
-        $datos = array("Parametro" => $_POST["editarParametro"],
-                       "FechaModificacion" => $fechaActual,
-                       "Valor" => $_POST["editarVal"]);
-
-
-        $respuesta = ModeloConfiguracion::mdlEditarParametro($tabla, $datos);
+        $respuesta = ModeloPeriodoAcm::mdlEditarPeriodo($tabla, $datos);
 
         if($respuesta == "ok"){
 
@@ -47,20 +40,22 @@ class ControladorPeriodoAcm{
 
           swal({
               type: "success",
-              title: "El parametro ha sido editado correctamente",
+              title: "El periodo ha sido editado correctamente",
               showConfirmButton: true,
               confirmButtonText: "Cerrar",
               closeOnConfirm: false
               }).then((result) => {
                   if (result.value) {
 
-                  window.location = "configuracio";
+                  window.location = "periodoacademico";
 
                   }
                 })
 
           </script>';
 
+        }elseif($respuesta == "error"){
+          echo "<script type='text/javascript'>alert('error')</script>";
         }
 
     }
@@ -71,28 +66,21 @@ class ControladorPeriodoAcm{
 	AGREGAR PARAMETRO NUEVO
 	=============================================*/
 
-	static public function ctrCrearParametro(){
+	static public function ctrCrearPeriodoAcm(){
 
-		if(isset($_POST["nuevoParametro"])){
-
-      date_default_timezone_set('America/Tegucigalpa');
-
-        $fecha = date('Y-m-d');
-        $hora = date('H:i:s');
-
-        $fechaActual = $fecha.' '.$hora;
+		if(isset($_POST["nuevoPeriodo"])){
 
         $usuario = $_SESSION["id"];
-				$tabla = "tbl_parametros";
+				$tabla = "tbl_periodoacademico";
 
 
-				$datos = array("Parametro" => strtoupper($_POST["nuevoParametro"]),
-										   "Valor" => $_POST["nuevoVal"],
-                       "FechaCreacion"=> $fechaActual,
-                       "Id_usuario" => $usuario);
+				$datos = array("DescripPeriodo" => strtoupper($_POST["nuevoPeriodo"]),
+										   "FechaInicio" => $_POST["FechaInicial"],
+                       "FechaFin"=> $_POST["FechaFinal"],
+                       "Activo" => $_POST["estadoperiodo"]);
 
 
-				$respuesta = ModeloConfiguracion::mdlIngresarParametro($tabla, $datos);
+				$respuesta = ModeloPeriodoAcm::mdlIngresarPeriodo($tabla, $datos);
 
 				if($respuesta == "ok"){
 
@@ -101,7 +89,7 @@ class ControladorPeriodoAcm{
 					swal({
 
 						type: "success",
-						title: "¡El Parametro ha sido guardado correctamente!",
+						title: "¡El Periodo Academico ha sido guardado correctamente!",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar",
 						closeOnConfirm: false
@@ -110,7 +98,7 @@ class ControladorPeriodoAcm{
 
 						if(result.value){
 
-							window.location = "configuracion";
+							window.location = "periodoacademico";
 
 						}
 
@@ -128,6 +116,22 @@ class ControladorPeriodoAcm{
 
 
 	}
+
+  /*=============================================
+	CARGAR ESTADOS
+	=============================================*/
+
+	static public function ctrCargarSelectEstado(){
+
+		$tabla = "tbl_periodoacademico";
+
+		$respuesta = ModeloPeriodoAcm::mdlCargarSelect($tabla);
+
+		return $respuesta;
+
+	}
+
+
 
 
 
